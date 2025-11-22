@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amourly</title>  
+
+    <link rel="stylesheet" href="css/PoetrySub.css"/> 
+
+</head>
+<body>
+
+<%- include("partials/PS_header.ejs") %>
+
+<div class="intro-section">
+
+    <div class="slider">
+        <div class="slides">
+            <img src="/static_files/Couple1.jpg" class="slide active" alt="Image 1">
+            <img src="/static_files/Couple2.jpg" class="slide" alt="Image 2">
+            <img src="/static_files/Couple3.jpg" class="slide" alt="Image 3">
+            <img src="/static_files/Couple4.jpg" class="slide" alt="Image 4">
+            <img src="/static_files/Couple5.jpg" class="slide" alt="Image 5">
+        </div>
+ 
+        <div class="dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+            <span class="dot" data-index="5"></span>
+        </div>
+    </div>
+
+    <div class="intro">
+        <h2>Welcome to Amourly</h2>
+        <p>At Amourly, we believe in the power of words to express love and affection. Our personalized poetry subscription service delivers heartfelt poems directly to your inbox, crafted to celebrate your unique relationships. Whether it's for anniversaries, birthdays, or just because, let us help you convey your deepest emotions through the art of poetry.</p>
+        <p>Sign up today and start sharing the magic of poetry with your loved ones!</p>
+    </div>
+</div>
+
+
+
+<div class="how-it-works-section">
+    <h2 class="section-title">How It Works</h2>
+    <ol class="how-it-works">
+        <li><strong>Choose Your Plan:</strong> Select a subscription plan that suits your needs - Schoolground Crush, New Love affair, Passionate Outpour</li>
+        <li><strong>Personalize Your Poems:</strong> Fill out a brief questionnaire about your relationship and preferences to help our poets create personalized verses. </li>
+        <li><strong>Receive Your Poems:</strong> Enjoy beautifully crafted poems delivered to your Significant Other's inbox on a regular basis.</li>
+        <li><strong>Make meaningful Memories:</strong> With our Top-tier package, take photos with your gifts and automatically enter into a prize draw for a couples weekend away and a year's subscription for free!</li>
+    </ol>
+</div>
+
+<div class="subscription-section">   
+    <h2 class="section-title">Subscription Plans</h2>
+
+    <div class="subscription-plans">
+        
+        <div class="basic-tile">
+            <img src="/static_files/Kids-crush.jpg" alt="Boy and Girl Image" width="100" height="100">
+            <div class="basic-tile-text">
+                <strong>School-ground Crush:</strong><p>Receive a personalized poem each month via email. <p> Perfect for young love and budding romances.</p> <p> Only £3.99/monthly </p> 
+                <div class="tile-hyperlink">More info here</div>
+            </div>
+        </div>
+        
+        <div class="middle-tile">  
+            <img src="/static_files/Teen-crush.jpg" alt="Teen couple Image" width="100" height="100">
+            <div class="middle-tile-text">
+                <strong>New Love affair:</strong> <p>Receive a personalized poem, haiku, sonnet, Ballad, Psalm, vow, Limerick and many more each month via email.</p> <p>Perfect for newlyweds and honey-mooners.</p> <p>Only £9.99/month</p> <div class="tile-hyperlink">More info here</div>
+            </div>
+        </div>
+        
+        <div class="top-tile"> <h3 class="top-tile-stamp">Our Most Popular Service!</h3>
+            <img src="/static_files/marriage-tile.jpg" alt="Wedding Image" width="100" height="100">
+            <div class="top-tile-text"> 
+                    <strong>Passionate Outpour:</strong> <p>Receive a personalized poem, haiku, sonnet, Ballad, Psalm, vow, Limerick and many more each month via email. </p><p>+ A beautifully printed version of your poem mailed to your receipient. </p> <p>Only £24.99/month</p> 
+                    <div class="top-tile-extra"><strong>+ A FREE gift with every delivery.</strong></div> <div class="tile-hyperlink">More info here</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="testimonials-section">
+    <h2 class="section-title-testimonials">Customer Reviews</h2>
+    <div class="testimonials-body">
+        <div class="testimonial">
+            <div class="testimonial-image">
+                    <img src="/static_files/Testimonial_img_M1.jpg" alt="Customer 1" width="150" height="150">
+            </div>
+            <p>"Amourly has transformed the way I express my feelings to my partner. The poems are beautiful and truly capture our relationship."</p>
+            <p>- Michael T.</p>
+        </div>
+
+        <div class="testimonial">
+                <div class="testimonial-image">
+                    <img src="/static_files/woman-1140923_1920.jpg" alt="Customer 2" width="150" height="150">
+                </div>
+            <p>"I love receiving my monthly poem from Amourly. It's a special reminder of our love and something I look forward to every month."</p>
+            <p>- Sarah L.</p>
+        </div>
+
+        <div class="testimonial">
+                <div class="testimonial-image">
+                    <img src="/static_files/girl-5211449_1920.jpg" alt="Customer 3" width="150" height="150">
+                </div>
+            <p>"The personalized touch in each poem makes it so meaningful. I've gifted several poems to friends, and they were all thrilled!"</p>
+            <p>- Emily R.</p>
+        </div>
+        
+        <div class="testimonial">
+                <div class="testimonial-image">
+                    <img src="/static_files/face-2171923_1920.jpg" alt="Customer 4" width="150" height="150">
+                </div>
+            <p>"The quality of the poems and the service is exceptional. My spouse now looks forward to receiving her Amourly package every month."</p>
+            <p>- David K.</p>
+        </div>
+
+        <div class="testimonial">
+                <div class="testimonial-image">
+                    <img src="/static_files/Testimonial_img_F1.jpg" alt="Customer 5" width="150" height="150">
+                </div>
+            <p>"Amourly has helped me rekindle the romance in my relationship. The poems are heartfelt and beautifully written."</p>
+            <p>- Jessica M.</p>
+        </div>
+        <div class="testimonial-trustpilot">
+            <div class="trustpilot-image">
+                <img src="/static_files/trustpilot-logo.webp" alt="TrustPilot Logo" width="450" height="300">
+            </div>
+            <h3>Rated 4.8/5 on TrustPilot</h3>
+            <a href="https://www.trustpilot.com/review/amourly.com" target="_blank" class="trustpilot-link">Read our reviews on TrustPilot</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap CSS -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<!-- Bootstrap JS (client-side only) -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+src="/Clientside_JS/PoetrySub.js" type="module"></script>
+
+<%- include("partials/PS_footer.ejs") %>
+
+</body>
+
+
+</html>

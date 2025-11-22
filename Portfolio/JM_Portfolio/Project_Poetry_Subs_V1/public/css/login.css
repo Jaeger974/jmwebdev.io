@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff9f5;
+  font-family: Arial, sans-serif;
+}
+
+.header{
+    text-align: center;
+    padding: 20px;
+    background: #A02c3e;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.nav-bar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border: 3px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(209, 204, 204, 0.1);
+
+}
+
+.nav-link{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.7s ease;
+    transition: transform 0.3s ease;
+    will-change: transform;
+
+    &:hover {
+        color: #f8d77c;
+        transform: scale(1.05);
+    }
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.input-field{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.login-button{
+    background: #A02c3e;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #8b252f;
+    }
+}
+
+.signup-link{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+
+
+}
+
+.OAuth-login-options{
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+.oauth-button-google{
+    background: #db4437;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #c33d2e;
+    }
+}
+
+.oauth-button-facebook{
+    background: #4267B2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #375899;
+    }
+}
+
+.oauth-button-twitter{
+    background: #1DA1F2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #0d95e8;
+    }
+}
+
+
+
+
+
+.footer{
+    text-align: center;
+    padding: 20px;
+    background: #b19696;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+    font-size: 14px;
+    border-top: 2px solid white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}

@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff9f5;
+  font-family: Arial, sans-serif;
+}
+
+.header{
+    text-align: center;
+    padding: 20px;
+    background: #A02c3e;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.nav-bar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border: 3px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(209, 204, 204, 0.1);
+
+}
+
+
+.parent-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.register-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #A02c3e;
+
+}
+.register-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.input-field{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    
+}
+
+.btn-primary{
+    padding: 10px;
+    background: #A02c3e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    
+
+    &:hover {
+        background: #f8d77c;
+        color: #A02c3e;
+    }
+}
+.form-label{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.footer{
+    text-align: center;
+    padding: 20px;
+    background: #b19696;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+    font-size: 14px;
+    border-top: 2px solid white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
