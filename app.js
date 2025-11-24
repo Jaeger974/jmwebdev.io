@@ -7,6 +7,7 @@ import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
 import passport from "passport";
+import GoogleStrategy from "passport-google-oauth2";
 import { Strategy } from "passport-local";
 import env from "dotenv";
 
@@ -39,17 +40,19 @@ app.use(
   saveUninitialized: true,
    cookie: {
      maxAge: 1000 * 60 * 10,
-   }// THIS CODE ALLOWS FOR A 10 MINUTE SESSION DURATION
+   }// 10 MINUTE SESSION DURATION
 })
 );
 
 let savedDate = '';
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.get("/", (req, res) => {
@@ -88,7 +91,20 @@ app.get("/forgot-password", (req, res) => {
     res.render("PS_forgotpassword");
 });
 
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
 
+app.get(
+  "/auth/google/secrets",
+  passport.authenticate("google", {
+    successRedirect: "/account",
+    failureRedirect: "/login",
+  })
+);
 
 
 app.post('/save-date', (req, res) => {
@@ -100,7 +116,8 @@ app.post('/save-date', (req, res) => {
 
 
 
-app.post("/login", passport.authenticate("local", {
+app.post("/login", 
+  passport.authenticate("local", {
   successRedirect: "/account",
   failureRedirect: "/login",
 })
@@ -151,30 +168,31 @@ app.post("/account", async (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-  try {
+
     const email = req.body.email;
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname; 
 
-    const checkResult = await db.query("SELECT * FROM logins WHERE email = $1; ",[email]
-    );
+  try {
+    const checkResult = await db.query("SELECT * FROM logins WHERE email = $1", [
+      email
+    ]);
 
     if (checkResult.rows.length > 0) {
           req.redirect("/login");
         } else {
-          //hashing the password and saving it in the database
           bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) {
               console.error("Error hashing password:", err);
             } else {
               const result = await db.query(
-                "INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
+                "INSERT INTO logins (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
                 [firstname, lastname, email, hash]
               );
               const user = result.rows[0];
               req.login(user, (err) => {
-                console.log("err");
+                console.log("success");
                 res.redirect("/account");
               });
             }
@@ -187,38 +205,8 @@ app.post("/register", async (req, res) => {
 
 
 
-
-
-// app.post("/login", async (req, res) => {
-//     const email = req.body.username;
-//     const password = req.body.password;
-
-//   const checkLogin = await db.query("SELECT * FROM logins WHERE email = $1",
-//       [email]
-//     );
-//     const checkPassword = await db.query("SELECT * FROM logins WHERE password = $1",
-//       [password]
-//     );
-
-//   try {
-// if (checkLogin.rows.length == 0){
-// res.send("This email does not exist. Try registering an account first");
-// } 
-// if (checkPassword.rows.length == 0) {
-//   res.send("Password incorrect. Please try again");
-// } else {
-//   res.render("/PS_account");
-//   console.log("User logged in successfully");
-// }
-//   } 
-//   catch (err) {
-//     console.log(err)
-//   }
-// });
-
-
-
 passport.use(
+  "local",
   new Strategy(async function verify(email, password, cb) {
  try {
     const result = await db.query("SELECT * FROM logins WHERE email = $1 ", [
@@ -254,6 +242,36 @@ passport.use(
 })
 );
 
+passport.use(
+  "google",
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/auth/google/secrets",
+      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      try {
+        console.log(profile);
+        const result = await db.query("SELECT * FROM logins WHERE email = $1", [
+          profile.email,
+        ]);
+        if (result.rows.length === 0) {
+          const newUser = await db.query(
+            "INSERT INTO logins (email, password) VALUES ($1, $2)",
+            [profile.email, "google"]
+          );
+          return cb(null, newUser.rows[0]);
+        } else {
+          return cb(null, result.rows[0]);
+        }
+      } catch (err) {
+        return cb(err);
+      }
+    }
+  )
+);
 
 
 passport.serializeUser((user, cb) => {
