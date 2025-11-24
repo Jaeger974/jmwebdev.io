@@ -27,9 +27,9 @@ const db = new pg.Client({
 });
 db.connect();
 
-app.set("view engine", "ejs");
+
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public/')));
+app.use(express.static(path.join(__dirname, 'public/static_files')));
 
 
 app.use(
@@ -43,10 +43,9 @@ app.use(
 })
 );
 
-
 let savedDate = '';
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -54,39 +53,39 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.get("/", (req, res) => {
-    res.render("views/PoetrySub.ejs");
+    res.render("PoetrySub");
 });
 
 app.get("/login", (req, res) => {
-    res.render("PS_login.ejs");
+    res.render("PS_login");
 });
 
 app.get("/register", (req, res) => {
-    res.render("PS_register.ejs");
+    res.render("PS_register");
 });
 
 app.get("/HowitWorks", (req, res) => {
-    res.render("PS_HowitWorks.ejs");
+    res.render("PS_HowitWorks");
 });
 
 app.get("/payment", (req, res) => {
-    res.render("PS_payment.ejs");
+    res.render("PS_payment");
 });
 
 app.get("/account", (req, res) => {
-    res.render("PS_account.ejs", { savedDate: savedDate });
+    res.render("PS_account", { savedDate: savedDate });
 });
 
 app.get("/account-options", (req, res) => {
-    res.render("PS_account-options.ejs");
+    res.render("PS_account-options");
 });
 
 app.get("/changepassword", (req, res) => {
-    res.render("PS_changepassword.ejs");
+    res.render("PS_changepassword");
 });
 
 app.get("/forgot-password", (req, res) => {
-    res.render("PS_forgotpassword.ejs");
+    res.render("PS_forgotpassword");
 });
 
 
