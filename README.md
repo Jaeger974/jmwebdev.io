@@ -4,7 +4,9 @@ JSAMPortfolio_V1
 
 # Amourly Subscription Service
 
-A dynamic web application built with Node.js, Express, and EJS, featuring static assets (CSS, JS, images) and modular views. This project demonstrates clean architecture, responsive design, and scalable templating.
+A dynamic web application built with Node.js, Express, Javascript, and EJS, Google, facebook and Twitter OAuthentication, Postgres database usage, password salting and hashing, cookie sessions, featuring static assets (CSS, JS, images), modular views. This project demonstrates clean architecture, responsive design, and scalable templating.
+
+All code and structure has been authored by myself or through course-based learning and element sampling. 
 
 ## 🚀 Features
 
