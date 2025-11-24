@@ -11,7 +11,7 @@ import GoogleStrategy from "passport-google-oauth2";
 import { Strategy } from "passport-local";
 import env from "dotenv";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
@@ -90,6 +90,13 @@ app.get("/changepassword", (req, res) => {
 app.get("/forgot-password", (req, res) => {
     res.render("PS_forgotpassword");
 });
+
+//API route test for render.com free hosting
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from Render free hosting!" });
+});
+
+
 
 app.get(
   "/auth/google",
