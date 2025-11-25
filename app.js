@@ -75,11 +75,11 @@ app.get("/payment", (req, res) => {
     res.render("PS_payment");
 });
 
-app.get("/account", (req, res) => {
+app.get("/yourdashboard", (req, res) => {
     res.render("PS_account", { savedDate: savedDate });
 });
 
-app.get("/account-options", (req, res) => {
+app.get("/accountchanges", (req, res) => {
     res.render("PS_account-options");
 });
 
@@ -87,7 +87,7 @@ app.get("/changepassword", (req, res) => {
     res.render("PS_changepassword");
 });
 
-app.get("/forgot-password", (req, res) => {
+app.get("/forgotpassword", (req, res) => {
     res.render("PS_forgotpassword");
 });
 
