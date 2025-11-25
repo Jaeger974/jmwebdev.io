@@ -91,6 +91,10 @@ app.get("/forgot-password", (req, res) => {
     res.render("PS_forgotpassword");
 });
 
+app.get("/newsignup", (req, res) => {
+    res.render("PS_newsignupform");
+});
+
 //API route test for render.com free hosting
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from Render free hosting!" });
