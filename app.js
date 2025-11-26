@@ -28,7 +28,7 @@ const db = new pg.Client({
 });
 db.connect();
 
-
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public/static_files')));
 
@@ -152,42 +152,41 @@ app.post('/account', (req, res) => {
 });
 
 //MAKE SURE THIS WORKS AND DOESNT COLLIDE OR INTERFERE WITH OTHER POST REQUESTS INTO DATABASE
-app.post("/account", async (req, res) => {
-  const account_address = req.body['recipient-email'];
-  const recipient_address = req.body['recipient-post'];
-  const sub_type = req.body['sub_type'];
+// app.post("/account", async (req, res) => {
+//   const account_address = req.body['recipient-email'];
+//   const recipient_address = req.body['recipient-post'];
+//   const sub_type = req.body['sub_type'];
 
-  try {
-    await db.query("INSERT INTO addresses (receipient-email, recipientpost, sub_type) WHERE ($1, $2)",
-      [account_address, recipient_address, sub_type]);
-    res.redirect("/account");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-
-//THIS NEEDS FIXING - ALLOW FOR LINKING EJS FILE ITEMS TO DATABASE ITEMS    
-app.post("/account", async (req, res) => {
-    const item = req.body.updatedItemTitle;
-
-  try {
-    await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
-    res.redirect("/account");
-  } catch (err) {
-    console.log(err);
-  }
-});
+//   try {
+//     await db.query("INSERT INTO addresses (receipient-email, recipientpost, sub_type) WHERE ($1, $2)",
+//       [account_address, recipient_address, sub_type]);
+//     res.redirect("/account");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
+// //THIS NEEDS FIXING - ALLOW FOR LINKING EJS FILE ITEMS TO DATABASE ITEMS    
+// app.post("/account", async (req, res) => {
+//     const item = req.body.updatedItemTitle;
+
+//   try {
+//     await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
+//     res.redirect("/account");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
-app.post("/newsignupform", async (req, res) => {
 
-    const email = req.body.email;
-    const password = req.body.password;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname; 
+//this code is currently not working properly - needs to redirect to payment page after signup. no response from req.body items or console logs. possible issues with ejs form or app.post route?
+app.post("/newsignup", async (req, res) => {
+
+  console.log("Received signup data:", req.body);
+
+  const {email, password, firstname, lastname, username} = req.body;
 
   try {
     const checkResult = await db.query("SELECT * FROM logins WHERE email = $1", [
@@ -195,18 +194,23 @@ app.post("/newsignupform", async (req, res) => {
     ]);
 
     if (checkResult.rows.length > 0) {
-          res.redirect("/login?msg=emailExists");
+          return res.redirect("/login?msg=emailExists");
         } else {
           bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) {
               console.error("Error hashing password:", err);
+              return res.status(500).send("Server error");
             } else {
               const result = await db.query(
-                "INSERT INTO logins (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
-                [firstname, lastname, email, hash]
-              );
+                "INSERT INTO logins (firstname, lastname, email, password, username) VALUES ($1, $2, $3, $4, $5) RETURNING *", [
+                  firstname, lastname, email, hash, username
+                ]);
               const user = result.rows[0];
               req.login(user, (err) => {
+                if (err) {
+                  console.error(err);
+                  return res.redirect("/login");
+                }
                 console.log("success");
                 res.redirect("/payment");
               });
@@ -215,6 +219,7 @@ app.post("/newsignupform", async (req, res) => {
         }
       } catch (err) {
         console.log(err);
+        res.status(500).send("Server error");
       }
 });
 

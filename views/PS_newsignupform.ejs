@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register New Account</title>
-<link rel="stylesheet" href="css/signupform.css"/> 
+<link rel="stylesheet" href="/css/signupform.css"/> 
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 
 <div class="signup-container">
   <h2>Create Your Account</h2>
-  <form action="/signup" method="POST">
+  <form action="/newsignup" method="POST">
 
     <!-- First Name -->
     <div class="form-group">
@@ -32,7 +32,7 @@
 
     <!-- Username -->
     <div class="form-group">
-      <input type="text" id="username" name="userame" placeholder=" " required>
+      <input type="text" id="username" name="username" placeholder=" " required>
       <label for="username">Username</label>
     </div>
 
@@ -143,7 +143,8 @@
     </div>
 
     <!-- Submit -->
-    <a href="/payment"> <button type="submit">Continue to payment</button></a>
+    <button type="submit">Continue to payment</button>
+
    
   </form>
 </div>
@@ -165,9 +166,17 @@
       radios.forEach(radio => {
         radio.addEventListener("change", () => {
           if (option3Radio.checked) {
-            recipientContainer.classList.remove("hidden");
+              recipientAddressLine1.required = true;
+              recipientCity.required = true;
+              recipientPostcode.required = true;
+              recipientCountry.required = true;
+                recipientContainer.classList.remove("hidden");
           } else {
-            recipientContainer.classList.add("hidden");
+              recipientAddressLine1.required = false;
+              recipientCity.required = false;
+              recipientPostcode.required = false;
+              recipientCountry.required = false;
+                recipientContainer.classList.add("hidden");
           }
         });
       });
