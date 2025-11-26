@@ -10,110 +10,145 @@
 
 <%- include("partials/PS_header.ejs") %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Signup Form</title>
-  <link rel="stylesheet" href="/css/signup.css">
-</head>
-<body>
-
     <header class="signup-header">
-    <h1>Join Our Poetry Subscription Service</h1>
-    </header>
+  <h1>Join Our Poetry Subscription Service</h1>
+</header>
 
-  <div class="signup-container">
-    <h2>Create Your Account</h2>
-    <form action="/signup" method="POST">
+<div class="signup-container">
+  <h2>Create Your Account</h2>
+  <form action="/signup" method="POST">
 
-      <!-- First Name -->
+    <!-- First Name -->
+    <div class="form-group">
+      <input type="text" id="firstName" name="firstName" placeholder=" " required>
       <label for="firstName">First Name</label>
-      <input type="text" id="firstName" name="firstName" required>
+    </div>
 
-      <!-- Last Name -->
+    <!-- Last Name -->
+    <div class="form-group">
+      <input type="text" id="lastName" name="lastName" placeholder=" " required>
       <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" name="lastName" required>
+    </div>
 
-      <!-- Email -->
+    <!-- Username -->
+    <div class="form-group">
+      <input type="text" id="username" name="userame" placeholder=" " required>
+      <label for="username">Username</label>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <input type="email" id="email" name="email" placeholder=" " required>
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" required>
+      <% if (typeof message !== "undefined" && message) { %>
 
-      <!-- Password -->
+    <small class="error-message"><%= message %></small>
+  <% } %>
+
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <input type="password" id="password" name="password" placeholder=" " required>
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
+    </div>
 
-      <!-- Confirm Password -->
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder=" " required>
       <label for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required>
+    </div>
 
-      <!-- Address -->
-      <label for="address">Your Address</label>
-        <label for="addressLine1">Address Line 1</label>
-            <input type="text" id="addressLine1" name="addressLine1" required>
+    <!-- Address -->
+    <h3>Your Address</h3>
+    <div class="form-group">
+      <input type="text" id="addressLine1" name="addressLine1" placeholder=" " required>
+      <label for="addressLine1">Address Line 1</label>
+    </div>
 
-            <label for="addressLine2">Address Line 2</label>
-            <input type="text" id="addressLine2" name="addressLine2">
+    <div class="form-group">
+      <input type="text" id="addressLine2" name="addressLine2" placeholder=" ">
+      <label for="addressLine2">Address Line 2</label>
+    </div>
 
-            <label for="city">Town/City</label>
-            <input type="text" id="city" name="city" required>
+    <div class="form-group">
+      <input type="text" id="city" name="city" placeholder=" " required>
+      <label for="city">Town/City</label>
+    </div>
 
-            <label for="postcode">Postcode / Zip Code</label>
-            <input type="text" id="postcode" name="postcode" required>
+    <div class="form-group">
+      <input type="text" id="postcode" name="postcode" placeholder=" " required>
+      <label for="postcode">Postcode / Zip Code</label>
+    </div>
 
-            <label for="country">Country</label>
-            <input type="text" id="country" name="country" required>
+    <div class="form-group">
+      <input type="text" id="country" name="country" placeholder=" " required>
+      <label for="country">Country</label>
+    </div>
 
+    <!-- Radio Input -->
+    <p>Choose a Subscription level:</p>
+    <div class="radio-group">
+      <label><input type="radio" name="choice" value="Option1" checked required> School-ground Crush</label>
+      <label><input type="radio" name="choice" value="Option2"> New Love affair</label>
+      <label><input type="radio" name="choice" value="Option3" id="option3"> Passionate Outpour</label>
+    </div>
 
-      <!-- Radio Input -->
-      <p>Choose an Subscription level:</p>
-      <div class="radio-group">
-        <label><input type="radio" name="choice" value="Option1"  checked required> School-ground Crush</label>
-        <label><input type="radio" name="choice" value="Option2"> New Love affair</label>
-        <label><input type="radio" name="choice" value="Option3" id="option3"> Passionate Outpour</label>
-      </div>
-      <!-- Recipient Address (hidden by default) -->
-      <div id="recipientAddressContainer" class="hidden">
-        <label for="addressLine1">Address Line 1</label>
-        <input type="text" id="addressLine1" name="addressLine1" required>
-
-        <label for="addressLine2">Address Line 2</label>
-        <input type="text" id="addressLine2" name="addressLine2">
-
-        <label for="city">Town/City</label>
-        <input type="text" id="city" name="city" required>
-
-        <label for="postcode">Postcode / Zip Code</label>
-        <input type="text" id="postcode" name="postcode" required>
-
-        <label for="country">Country</label>
-        <input type="text" id="country" name="country" required>
-
+    <!-- Recipient Address (hidden by default) -->
+    <div id="recipientAddressContainer" class="hidden">
+      <div class="form-group">
+        <input type="text" id="recipientAddressLine1" name="recipientAddressLine1" placeholder=" " required>
+        <label for="recipientAddressLine1">Recipient Address Line 1</label>
       </div>
 
+      <div class="form-group">
+        <input type="text" id="recipientAddressLine2" name="recipientAddressLine2" placeholder=" ">
+        <label for="recipientAddressLine2">Recipient Address Line 2</label>
+      </div>
 
-      <!-- Recipient Email -->
+      <div class="form-group">
+        <input type="text" id="recipientCity" name="recipientCity" placeholder=" " required>
+        <label for="recipientCity">Recipient Town/City</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="recipientPostcode" name="recipientPostcode" placeholder=" " required>
+        <label for="recipientPostcode">Recipient Postcode / Zip Code</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="recipientCountry" name="recipientCountry" placeholder=" " required>
+        <label for="recipientCountry">Recipient Country</label>
+      </div>
+    </div>
+
+    <!-- Recipient Email -->
+    <div class="form-group">
+      <input type="email" id="recipientEmail" name="recipientEmail" placeholder=" ">
       <label for="recipientEmail">Recipient Email</label>
-      <input type="email" id="recipientEmail" name="recipientEmail">
+    </div>
 
-      <!-- Dropdown Multiple Choice -->
-      <label for="radio-group2">Select frequency of Delivery</label>
-        <div class="radio-group2">
-        <label><input type="radio" name="freqchoice" value="Option1"  checked required> Every 2 weeks</label>
-        <label><input type="radio" name="freqchoice" value="Option2"> Every Month</label>
-        <label><input type="radio" name="freqchoice" value="Option3"> Every 2 Months</label>
-        <label><input type="radio" name="freqchoice" value="Option3"> Every 6 Months</label>
-      </div>
+    <!-- Frequency -->
+    <p>Select frequency of Delivery:</p>
+    <div class="radio-group2">
+      <label><input type="radio" name="freqchoice" value="Option1" checked required> Every 2 weeks</label>
+      <label><input type="radio" name="freqchoice" value="Option2"> Every Month</label>
+      <label><input type="radio" name="freqchoice" value="Option3"> Every 2 Months</label>
+      <label><input type="radio" name="freqchoice" value="Option4"> Every 6 Months</label>
+    </div>
 
-        <div id="priceDisplay" class="price-box">
-        Total Romantic Investment: <span id="priceValue">£10</span> per Month
-      </div>
+    <!-- Price Display -->
+    <div id="priceDisplay" class="price-box">
+      Total Romantic Investment: <span id="priceValue">£10</span>
+    </div>
 
-      <!-- Submit -->
-      <button type="submit">Sign Up</button>
-    </form>
-  </div>
+    <!-- Submit -->
+    <a href="/payment"> <button type="submit">Continue to payment</button></a>
+   
+  </form>
+</div>
 
+</body>
 
 
 
@@ -122,11 +157,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" src="/Clientside_JS/PoetrySub.js" type="module"></script>
 
  <script>
-
-    document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
       const option3Radio = document.getElementById("option3");
       const recipientContainer = document.getElementById("recipientAddressContainer");
-      const radios = document.querySelectorAll("input[name='freqchoice']");
+      const radios = document.querySelectorAll("input[name='choice']");
 
       radios.forEach(radio => {
         radio.addEventListener("change", () => {
@@ -137,30 +171,45 @@
           }
         });
       });
-    });
+});
   </script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const radios = document.querySelectorAll("input[name='choice']");
-      const priceValue = document.getElementById("priceValue");
+  document.addEventListener("DOMContentLoaded", () => {
+    const radios = document.querySelectorAll("input[name='choice']");
+    const freqRadios = document.querySelectorAll("input[name='freqchoice']");
+    const priceValue = document.getElementById("priceValue");
 
-      // Define prices for each option
-      const prices = {
-        Option1: 3.99,
-        Option2: 9.99,
-        Option3: 24.99
-      };
+    const prices = {
+      Option1: 3.99,
+      Option2: 9.99,
+      Option3: 24.99
+    };
 
-      // Update price when radio changes
-      radios.forEach(radio => {
-        radio.addEventListener("change", () => {
-          const selected = document.querySelector("input[name='choice']:checked").value;
-          priceValue.textContent = "£" + prices[selected];
-        });
-      });
-    });
-  </script>
+    const frequencyFactors = {
+      Option1: 2.2,    // Every 2 weeks
+      Option2: 1,      // Every month
+      Option3: 0.9,   // Every 2 months
+      Option4: 0.7  // Every 6 months
+    };
+
+    function updatePrice() {
+      const selectedPlan = document.querySelector("input[name='choice']:checked").value;
+      const selectedFreq = document.querySelector("input[name='freqchoice']:checked")?.value || "Option2"; 
+
+      const basePrice = prices[selectedPlan];
+      const multiplier = frequencyFactors[selectedFreq];
+      const finalPrice = (basePrice * multiplier).toFixed(2);
+
+      priceValue.textContent = "£" + finalPrice + " per Delivery";
+    }
+
+    radios.forEach(radio => radio.addEventListener("change", updatePrice));
+    freqRadios.forEach(radio => radio.addEventListener("change", updatePrice));
+
+    updatePrice();
+  });
+</script>
 
 
 <%- include("partials/PS_footer.ejs") %>

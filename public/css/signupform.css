@@ -1,8 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background: #fff9f5;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .header{
@@ -13,6 +16,7 @@ body {
     border-radius: 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     margin: 0;
+    align-content: center;
 }
 
 .nav-bar {
@@ -77,13 +81,20 @@ form input:focus, form textarea:focus, form select:focus {
   outline: none;
 }
 
+.error-message {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
 .radio-group {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.radio-group label {
+.radio-group  label {
   font-weight: 500;
   color: #555;
 }
@@ -119,7 +130,41 @@ form input:focus, form textarea:focus, form select:focus {
 }
 
 #recipientAddressContainer {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeInOut 0.5s ease-in-out;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-group label {
+  position: absolute;
+  left: 12px;
+  top: 40%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  top: 18px;
+}
+
+/* When input has focus or text */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  font-size: 0.8rem;
+  color: #6a82fb;
+  background: #fff;
+  padding: 0 4px;
 }
 
 button {
@@ -145,6 +190,15 @@ button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.price-box{
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    margin: 1.5rem;
+    
+}
 
 
 .footer{

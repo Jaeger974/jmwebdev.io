@@ -61,6 +61,11 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
     res.render("PS_login");
+
+    const message = req.query.msg === "emailExists" 
+    ? "This email is already registered. Please log in." 
+    : null;
+  res.render("login", { message });
 });
 
 app.get("/register", (req, res) => {
@@ -99,7 +104,6 @@ app.get("/newsignup", (req, res) => {
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from Render free hosting!" });
 });
-
 
 
 app.get(
@@ -178,7 +182,7 @@ app.post("/account", async (req, res) => {
 
 
 
-app.post("/register", async (req, res) => {
+app.post("/newsignupform", async (req, res) => {
 
     const email = req.body.email;
     const password = req.body.password;
@@ -191,7 +195,7 @@ app.post("/register", async (req, res) => {
     ]);
 
     if (checkResult.rows.length > 0) {
-          req.redirect("/login");
+          res.redirect("/login?msg=emailExists");
         } else {
           bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) {
@@ -204,7 +208,7 @@ app.post("/register", async (req, res) => {
               const user = result.rows[0];
               req.login(user, (err) => {
                 console.log("success");
-                res.redirect("/account");
+                res.redirect("/payment");
               });
             }
           });
