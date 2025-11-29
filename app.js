@@ -35,13 +35,13 @@ app.use(express.static(path.join(__dirname, 'public/static_files')));
 
 app.use(
   session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-   cookie: {
-     maxAge: 1000 * 60 * 10,
-   }// 10 MINUTE SESSION DURATION
-})
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 10,
+    }// 10 MINUTE SESSION DURATION
+  })
 );
 
 let savedDate = '';
@@ -56,48 +56,46 @@ app.use(passport.session());
 
 
 app.get("/", (req, res) => {
-    res.render("PoetrySub");
+  res.render("PoetrySub");
 });
 
 app.get("/login", (req, res) => {
-    res.render("PS_login");
-
-    const message = req.query.msg === "emailExists" 
-    ? "This email is already registered. Please log in." 
+  const message = req.query.msg === "emailExists"
+    ? "This email is already registered. Please log in."
     : null;
-  res.render("login", { message });
+  res.render("PS_login", { message });
 });
 
 app.get("/register", (req, res) => {
-    res.render("PS_register");
+  res.render("PS_register");
 });
 
 app.get("/HowitWorks", (req, res) => {
-    res.render("PS_HowitWorks");
+  res.render("PS_HowitWorks");
 });
 
 app.get("/payment", (req, res) => {
-    res.render("PS_payment");
+  res.render("PS_payment");
 });
 
 app.get("/yourdashboard", (req, res) => {
-    res.render("PS_account", { savedDate: savedDate });
+  res.render("PS_account", { savedDate: savedDate });
 });
 
 app.get("/accountchanges", (req, res) => {
-    res.render("PS_account-options");
+  res.render("PS_account-options");
 });
 
 app.get("/changepassword", (req, res) => {
-    res.render("PS_changepassword");
+  res.render("PS_changepassword");
 });
 
 app.get("/forgotpassword", (req, res) => {
-    res.render("PS_forgotpassword");
+  res.render("PS_forgotpassword");
 });
 
 app.get("/newsignup", (req, res) => {
-    res.render("PS_newsignupform");
+  res.render("PS_newsignupform");
 });
 
 //API route test for render.com free hosting
@@ -131,23 +129,25 @@ app.post('/save-date', (req, res) => {
 
 
 
-app.post("/login", 
+app.post("/login",
   passport.authenticate("local", {
-  successRedirect: "/account",
-  failureRedirect: "/login",
-})
+    successRedirect: "/account",
+    failureRedirect: "/login",
+  })
 );
 
+// Combined account POST route
 app.post('/account', (req, res) => {
-  const newText = req.body.newText;
-  // Save to DB or file here
-  console.log('Updated text:', newText);
-  res.sendStatus(200);
-});
+  if (req.body.newText) {
+    const newText = req.body.newText;
+    console.log('Updated text:', newText);
+  }
 
-app.post('/account', (req, res) => {
-  savedDate = req.body.date;
-  console.log('Date saved:', savedDate);
+  if (req.body.date) {
+    savedDate = req.body.date;
+    console.log('Date saved:', savedDate);
+  }
+
   res.sendStatus(200);
 });
 
@@ -181,12 +181,11 @@ app.post('/account', (req, res) => {
 
 
 
-//this code is currently not working properly - needs to redirect to payment page after signup. no response from req.body items or console logs. possible issues with ejs form or app.post route?
 app.post("/newsignup", async (req, res) => {
 
   console.log("Received signup data:", req.body);
 
-  const {email, password, firstname, lastname, username} = req.body;
+  const { email, password, firstname, lastname, username } = req.body;
 
   try {
     const checkResult = await db.query("SELECT * FROM logins WHERE email = $1", [
@@ -194,72 +193,73 @@ app.post("/newsignup", async (req, res) => {
     ]);
 
     if (checkResult.rows.length > 0) {
-          return res.redirect("/login?msg=emailExists");
+      return res.redirect("/login?msg=emailExists");
+    } else {
+      bcrypt.hash(password, saltRounds, async (err, hash) => {
+        if (err) {
+          console.error("Error hashing password:", err);
+          return res.status(500).send("Server error");
         } else {
-          bcrypt.hash(password, saltRounds, async (err, hash) => {
+          const result = await db.query(
+            "INSERT INTO logins (firstname, lastname, email, password, username) VALUES ($1, $2, $3, $4, $5) RETURNING *", [
+            firstname, lastname, email, hash, username
+          ]);
+          const user = result.rows[0];
+          req.login(user, (err) => {
             if (err) {
-              console.error("Error hashing password:", err);
-              return res.status(500).send("Server error");
-            } else {
-              const result = await db.query(
-                "INSERT INTO logins (firstname, lastname, email, password, username) VALUES ($1, $2, $3, $4, $5) RETURNING *", [
-                  firstname, lastname, email, hash, username
-                ]);
-              const user = result.rows[0];
-              req.login(user, (err) => {
-                if (err) {
-                  console.error(err);
-                  return res.redirect("/login");
-                }
-                console.log("success");
-                res.redirect("/payment");
-              });
+              console.error(err);
+              return res.redirect("/login");
             }
+            console.log("success");
+            return res.redirect("/payment");
           });
         }
-      } catch (err) {
-        console.log(err);
-        res.status(500).send("Server error");
-      }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Server error");
+  }
 });
 
 
 
 passport.use(
   "local",
-  new Strategy(async function verify(email, password, cb) {
- try {
-    const result = await db.query("SELECT * FROM logins WHERE email = $1 ", [
-      email,
-    ]);
-    if (result.rows.length > 0) {
+  new Strategy({ usernameField: 'username' }, async function verify(username, password, cb) {
+    try {
+      const result = await db.query("SELECT * FROM logins WHERE username = $1", [
+        username,
+      ]);
+      if (result.rows.length > 0) {
 
-      const user = result.rows[0];
-      const storedHashedPassword = user.password;
+        const user = result.rows[0];
+        const storedHashedPassword = user.password;
 
-      bcrypt.compare(password, storedHashedPassword, (err, valid) => {
-        if (err) {
+        bcrypt.compare(password, storedHashedPassword, (err, valid) => {
+          if (err) {
 
-          console.error("Error comparing passwords:", err);
-          return cb(err);
+            console.error("Error comparing passwords:", err);
+            return cb(err);
 
-        } else {
-
-          if (valid) {
-            return cb(null, user);
           } else {
-            return cb(null, false);
-          }
 
-        }
-      });
-    } else {
-      return cb("User not found");
+            if (valid) {
+              return cb(null, user);
+            } else {
+              return cb(null, false);
+            }
+
+          }
+        });
+      } else {
+        return cb("User not found");
+      }
+    } catch (err) {
+      console.log(err);
+      return cb(err);
     }
-  } catch (err) {
-    console.log(err);
-  }
-})
+  })
 );
 
 passport.use(
@@ -295,10 +295,10 @@ passport.use(
 
 
 passport.serializeUser((user, cb) => {
-cb(null, user);
+  cb(null, user);
 });
 passport.deserializeUser((user, cb) => {
   cb(null, user);
-  });
+});
 
 app.listen(PORT, () => console.log(`Server running at localhost:${PORT}`));
