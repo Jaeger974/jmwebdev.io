@@ -37,7 +37,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -47,12 +47,27 @@ body {
   color: #333;
 }
 
+.signup-container h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.signup-container h4 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  margin-top: 1.5rem;
+}
+
 form label {
   display: block;
   margin: 0.5rem 0 0.2rem;
   font-weight: 600;
   color: #444;
 }
+
+
 
 form input, form textarea, form select {
   width: 100%;
@@ -155,6 +170,21 @@ form input:focus, form textarea:focus, form select:focus {
   padding: 0 4px;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.price-box{
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    margin: 1.5rem;
+    
+}
+
 button {
   width: 100%;
   padding: 0.8rem;
@@ -172,22 +202,6 @@ button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.price-box{
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    text-align: center;
-    margin: 1.5rem;
-    
-}
-
 
 .footer{
     text-align: center;

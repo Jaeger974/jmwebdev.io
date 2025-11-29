@@ -15,7 +15,7 @@
 </header>
 
 <div class="signup-container">
-  <h2>Create Your Account</h2>
+  <h2>Create Account</h2>
   <form action="/newsignup" method="POST">
 
     <!-- First Name -->
@@ -44,7 +44,6 @@
 
     <small class="error-message"><%= message %></small>
   <% } %>
-
     </div>
 
     <!-- Password -->
@@ -86,16 +85,42 @@
       <label for="country">Country</label>
     </div>
 
-    <!-- Radio Input -->
-    <p>Choose a Subscription level:</p>
+
+
+
+        <!-- Radio Input -->
+    <h4>Choose a Subscription level:</h4>
     <div class="radio-group">
       <label><input type="radio" name="choice" value="Option1" checked required> School-ground Crush</label>
       <label><input type="radio" name="choice" value="Option2"> New Love affair</label>
       <label><input type="radio" name="choice" value="Option3" id="option3"> Passionate Outpour</label>
     </div>
 
+    <!-- Frequency -->
+    <h4>Select frequency of Delivery:</h4>
+    <div class="radio-group2">
+      <label><input type="radio" name="freqchoice" value="Option1" checked required> Every 2 weeks</label>
+      <label><input type="radio" name="freqchoice" value="Option2"> Every Month</label>
+      <label><input type="radio" name="freqchoice" value="Option3"> Every 2 Months</label>
+      <label><input type="radio" name="freqchoice" value="Option4"> Every 6 Months</label>
+    </div>
+
+    <!-- Recipient Email -->
+
+    
+        <h3>Recipient Details</h3> 
+        
+        <div class="form-group">
+      <input type="email" id="recipientEmail" name="recipientEmail" placeholder=" ">
+      <label for="recipientEmail">Recipient Email</label>
+    </div>
+
+
     <!-- Recipient Address (hidden by default) -->
-    <div id="recipientAddressContainer" class="hidden">
+    <div id="recipientAddressContainer" class="hidden">    
+      
+     
+
       <div class="form-group">
         <input type="text" id="recipientAddressLine1" name="recipientAddressLine1" placeholder=" " required>
         <label for="recipientAddressLine1">Recipient Address Line 1</label>
@@ -122,20 +147,7 @@
       </div>
     </div>
 
-    <!-- Recipient Email -->
-    <div class="form-group">
-      <input type="email" id="recipientEmail" name="recipientEmail" placeholder=" ">
-      <label for="recipientEmail">Recipient Email</label>
-    </div>
-
-    <!-- Frequency -->
-    <p>Select frequency of Delivery:</p>
-    <div class="radio-group2">
-      <label><input type="radio" name="freqchoice" value="Option1" checked required> Every 2 weeks</label>
-      <label><input type="radio" name="freqchoice" value="Option2"> Every Month</label>
-      <label><input type="radio" name="freqchoice" value="Option3"> Every 2 Months</label>
-      <label><input type="radio" name="freqchoice" value="Option4"> Every 6 Months</label>
-    </div>
+    
 
     <!-- Price Display -->
     <div id="priceDisplay" class="price-box">
@@ -196,10 +208,10 @@
     };
 
     const frequencyFactors = {
-      Option1: 2.2,    // Every 2 weeks
+      Option1: 2.4,    // Every 2 weeks
       Option2: 1,      // Every month
-      Option3: 0.9,   // Every 2 months
-      Option4: 0.7  // Every 6 months
+      Option3: 0.7,   // Every 2 months
+      Option4: 0.4  // Every 6 months
     };
 
     function updatePrice() {
