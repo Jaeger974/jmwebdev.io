@@ -13,7 +13,7 @@
     <header class="signup-header">
   <h1>Join Our Poetry Subscription Service</h1>
 </header>
-
+<div class="mainbody">
 <div class="signup-container">
   <h2>Create Account</h2>
   <form action="/newsignup" method="POST">
@@ -56,6 +56,8 @@
     <div class="form-group">
       <input type="password" id="confirmPassword" name="confirmPassword" placeholder=" " required>
       <label for="confirmPassword">Confirm Password</label>
+        <small id="passwordMessage"></small>
+
     </div>
 
     <!-- Address -->
@@ -151,14 +153,16 @@
 
     <!-- Price Display -->
     <div id="priceDisplay" class="price-box">
-      Total Romantic Investment: <span id="priceValue">£10</span>
+      Total Romantic Investment: <span id="priceValue"></span>
     </div>
 
     <!-- Submit -->
-    <button type="submit">Continue to payment</button>
+    <button type="submit" id="submitBtn">Continue to payment</button>
+    
 
    
   </form>
+</div>
 </div>
 
 </body>
@@ -232,6 +236,42 @@
   });
 </script>
 
+<script>
+
+
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+const submitBtn = document.getElementById("submitBtn");
+const message = document.getElementById("passwordMessage");
+
+function validatePasswords() {
+  if (password.value && confirmPassword.value) {
+    if (password.value !== confirmPassword.value) {
+      // ❌ mismatch
+      confirmPassword.setCustomValidity("Passwords do not match");
+      message.textContent = "Passwords do not match ❌";
+      message.style.color = "red";
+      submitBtn.disabled = true;
+    } else {
+      // ✅ match
+      confirmPassword.setCustomValidity("");
+      message.textContent = "Passwords match ✅";
+      message.style.color = "green";
+      submitBtn.disabled = false;
+    }
+  } else {
+    // empty fields
+    confirmPassword.setCustomValidity("Please confirm your password");
+    message.textContent = "";
+    submitBtn.disabled = true;
+  }
+}
+
+// Run validation whenever user types
+password.addEventListener("input", validatePasswords);
+confirmPassword.addEventListener("input", validatePasswords);
+
+</script>
 
 <%- include("partials/PS_footer.ejs") %>
 
