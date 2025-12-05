@@ -14,33 +14,34 @@
 
 
 <div class="included-section">   
-    <h2 class="section-title">What's Included?</h2>
+    
+    <div class="HIWintro">
+        <h2 class="section-title">What's Included?</h2>
+            <img src="/static_files/couple6.jpg" id="img-couple1" alt="couple_together_img" width="100" height="100">
+            
+            <div class="included-features">
+                <div class="feature-tile" id="feature1">
+                    <h3 class="feature-subtitle">Personalized Poems</h3>
+                    <p class="featuretext">Each poem can be uniquely crafted based on your relationship details and preferences, ensuring a heartfelt and meaningful experience or Poems can be chosen from our carefully curated libraries of romantic expressions.</p>
+                </div>
 
-    <div class="included-features">
+                <div class="feature-tile" id="feature2">
+                    <h3 class="feature-subtitle">Regular Deliveries</h3>
+                    <p class="featuretext">Receive beautifully written poems delivered directly to your Significant Other's inbox at your chosen frequency.</p>
+                </div>
 
-        <img src="/static_files/couple6.jpg" id="img-couple1" alt="couple_together_img" width="100" height="100">
-        
-        <div class="feature-tile" id="feature1">
-            <h3>Personalized Poems</h3>
-            <p>Each poem can be uniquely crafted based on your relationship details and preferences, ensuring a heartfelt and meaningful experience. Or Poems can be chosen from our carefully curated libraries of romantic expressions.</p>
-        </div>
+                <div class="feature-tile" id="feature3">
+                    <h3 class="feature-subtitle">Exclusive Offers</h3>
+                    <p class="featuretext">Subscribers gain access to a variety of romantic expressions, a display card for your favourite poems, and the chance to win exciting prizes with our top-tier package.</p>
+                </div>
 
-        <div class="feature-tile" id="feature2">
-            <h3>Regular Deliveries</h3>
-            <p>Receive beautifully written poems delivered directly to your Significant Other's inbox at your chosen frequency.</p>
-        </div>
+            </div>  
+    </div>
 
-        <div class="feature-tile" id="feature3">
-            <h3>Exclusive Offers</h3>
-            <p>Subscribers gain access to a variety of romantic expressions, a display card for your favourite poems, and the chance to win exciting prizes with our top-tier package.</p>
-        </div>
-
-    </div>  
-
-    <div class="section" id="tier1-crush">
-        <h3>Young Crush Package</h3>
+    <div class="tiersection" id="tier1">
+        <h3 class="tiertitle">Young Crush Package</h3>
             <ul>
-                <li>Monthly "Amoure" delivery from our curated libraries</li>
+                <li>Monthly "Amore" delivery from our curated libraries</li>
                 <li>Email delivery to your Significant Other</li>
                 <li>Animated digital display card displaying each poem</li>
             </ul>
@@ -50,46 +51,91 @@
             </a>
     </div>
 
-    <div class="section" id="tier2-newlove">
-        <h3>New Love Affair Package</h3>
+    <div class="tiersection" id="tier2">
+        <h3 class="tiertitle">New Love Affair Package</h3>
             <ul>
-                <li>Monthly "Amoure" delivery from our curated libraries including haikus, sonnet, Ballad, Psalm, vow, Limerick and many more</li>
+                <li>Monthly "Amore" delivery from our curated libraries including haikus, sonnet, Ballad, Psalm, vow, Limerick and many more</li>
                 <li>Email delivery to your Significant Other</li>
                 <li>A digital display card within the email with each poem</li>
-                <li>Brief "Amoure" background description sent to your email to ignite passion and connectivity</li>
+                <li>Brief "Amore" background description sent to your email to ignite passion and connectivity</li>
             </ul>
 
             <a href="/newsignup?choice=option2">
                 <button class="btn-love" onclick="location.href='/newsignup'">Start Your New Love Affair</button>
             </a>
     </div>
-    <div class="section" id="tier3-passionate">
-        <h3>Passionate Outpour Package</h3>
-            <ul class="">
-                <li>Monthly "Amoure" delivery from our curated libraries including haikus, sonnet, Ballad, Psalm, vow, Limerick and many more</li>    
+
+    <div class="tiersection" id="tier3">
+        <h3 class="tiertitle">Passionate Outpour Package</h3>
+            <ul>
+                <li>Monthly "Amore" delivery from our curated libraries including haikus, sonnet, Ballad, Psalm, vow, Limerick and many more</li>    
                 <li>Email delivery to your Significant Other with a sensational animation to display your "Amore"</li>
                 <li>A premium display card sent to your SO's address with your "Amore" displayed in fine detail creating lasting memories!</li>
-                <li>In-depth "Amoure" background description sent to your email to ignite passion and connectivity</li>
+                <li>In-depth "Amore" background description sent to your email to ignite passion and connectivity</li>
                 <li>Entry into a monthly prize draw to win a romantic couples weekend
                     away and a year's subscription for free when you send us a photo of you both with your gifts</li>
             </ul>
 
             <a href="/newsignup?choice=option3">
-                <button class="btn-passion" onclick="location.href='/newsignup'">Start Your Passionate Outpour</button>
+                <button id="loveButton" class="btn-passion" onclick="location.href='/newsignup'">Start Your Passionate Outpour</button>
             </a>
 
     </div>
 </div>
 
 
-
-
-
-
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" src="/Clientside_JS/PoetrySub.js" type="module"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('loveButton');
+    let intervalId = null;
+
+    // Function to create a single heart
+    const createHeart = () => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-bubble');
+
+        // 1. Random Size (between 10px and 20px)
+        const size = Math.floor(Math.random() * 10) + 10;
+        heart.style.width = `${size}px`;
+        heart.style.height = `${size}px`;
+
+        // 2. Random Horizontal Position (0% to 90% of button width)
+        const left = Math.random() * 90; 
+        heart.style.left = `${left}%`;
+
+        // 3. Random Animation Speed (0.8s to 1.5s)
+        const duration = Math.random() * 0.7 + 0.8;
+        heart.style.animation = `floatPop ${duration}s ease-out forwards`;
+
+        button.appendChild(heart);
+
+        // 4. Cleanup: Remove element from DOM after animation finishes
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000); 
+    };
+
+    // Start bubbling on mouse enter
+    button.addEventListener('mouseenter', () => {
+        // Create a heart every 100ms
+        intervalId = setInterval(createHeart, 100);
+        // Create one immediately so there is no delay
+        createHeart();
+    });
+
+    // Stop bubbling on mouse leave
+    button.addEventListener('mouseleave', () => {
+        clearInterval(intervalId);
+    });
+});
+
+</script>
+
 
 <%- include("partials/PS_footer.ejs") %>
 </body>
