@@ -101,7 +101,8 @@ app.get("/forgotpassword", (req, res) => {
 });
 
 app.get("/newsignup", (req, res) => {
-    res.render("PS_newsignupform");
+  const choice = req.query.choice || "option1";
+    res.render("PS_newsignupform", { choice });
 });
 
 //API route test for render.com free hosting
