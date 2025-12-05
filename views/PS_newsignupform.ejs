@@ -93,18 +93,18 @@
         <!-- Radio Input -->
     <h4>Choose a Subscription level:</h4>
     <div class="radio-group">
-      <label><input type="radio" name="choice" value="option1"  <%= choice === 'option1' ? 'checked' : '' %> checked required> School-ground Crush</label>
-      <label><input type="radio" name="choice" value="option2"       <%= choice === 'option2' ? 'checked' : '' %>> New Love affair</label>
-      <label><input type="radio" name="choice" value="option3" id="option3"       <%= choice === 'option3' ? 'checked' : '' %>> Passionate Outpour</label>
+      <label class="packageradio"><input type="radio" name="choice" value="option1"  <%= choice === 'option1' ? 'checked' : '' %> checked required> School-ground Crush</label>
+      <label class="packageradio"><input type="radio" name="choice" value="option2"       <%= choice === 'option2' ? 'checked' : '' %>> New Love affair</label>
+      <label class="packageradio"><input type="radio" name="choice" value="option3" id="option3"       <%= choice === 'option3' ? 'checked' : '' %>> Passionate Outpour</label>
     </div>
 
     <!-- Frequency -->
     <h4>Select frequency of Delivery:</h4>
     <div class="radio-group2">
-      <label><input type="radio" name="freqchoice" value="Option1" checked required> Every 2 weeks</label>
-      <label><input type="radio" name="freqchoice" value="Option2"> Every Month</label>
-      <label><input type="radio" name="freqchoice" value="Option3"> Every 2 Months</label>
-      <label><input type="radio" name="freqchoice" value="Option4"> Every 6 Months</label>
+      <label><input type="radio" name="freqchoice" value="option1"  required> Every 2 weeks</label>
+      <label><input type="radio" name="freqchoice" value="option2" checked> Every Month</label>
+      <label><input type="radio" name="freqchoice" value="option3"> Every 2 Months</label>
+      <label><input type="radio" name="freqchoice" value="option4"> Every 6 Months</label>
     </div>
 
     <!-- Recipient Email -->
@@ -206,27 +206,27 @@
     const priceValue = document.getElementById("priceValue");
 
     const prices = {
-      Option1: 3.99,
-      Option2: 9.99,
-      Option3: 24.99
+      option1: 3.99,
+      option2: 9.99,
+      option3: 24.99
     };
 
     const frequencyFactors = {
-      Option1: 2.4,    // Every 2 weeks
-      Option2: 1,      // Every month
-      Option3: 0.7,   // Every 2 months
-      Option4: 0.4  // Every 6 months
+      option1: 2.4,    // Every 2 weeks
+      option2: 1,      // Every month
+      option3: 0.7,   // Every 2 months
+      option4: 0.4  // Every 6 months
     };
 
     function updatePrice() {
       const selectedPlan = document.querySelector("input[name='choice']:checked").value;
-      const selectedFreq = document.querySelector("input[name='freqchoice']:checked")?.value || "Option2"; 
+      const selectedFreq = document.querySelector("input[name='freqchoice']:checked")?.value || "option2"; 
 
       const basePrice = prices[selectedPlan];
       const multiplier = frequencyFactors[selectedFreq];
       const finalPrice = (basePrice * multiplier).toFixed(2);
 
-      priceValue.textContent = "£" + finalPrice + " per Delivery";
+      priceValue.textContent = "£" + finalPrice + " per Month";
     }
 
     radios.forEach(radio => radio.addEventListener("change", updatePrice));

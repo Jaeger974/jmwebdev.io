@@ -48,8 +48,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-
   }
+
 .signup-container {
   background: #fff;
   padding: 2rem;
@@ -87,8 +87,6 @@ form label {
   color: #444;
 }
 
-
-
 form input, form textarea, form select {
   width: 100%;
   padding: 0.6rem;
@@ -111,7 +109,6 @@ form input:focus, form textarea:focus, form select:focus {
   font-weight: 500;      /* slightly bold for clarity */
   height: 18px;          /* reserve space to prevent layout shift */
   transition: color 0.3s; /* smooth color change */
-
 }
 
 #passwordMessage.error {
@@ -131,14 +128,46 @@ form input:focus, form textarea:focus, form select:focus {
 
 .radio-group {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+  justify-content: space-between; /* equal spacing across the div */
+  align-items: flex-start;        /* align items at the top */
+  width: 100%;                    /* full width of parent */
+  max-width: 600px;               /* optional: limit width */
+  margin: 0 auto;    
+  gap: 10px;                      /* space between radio options */
+
+}
+
+.packageradio{
+  display: flex;
+  flex-direction: column; /* stack radio above label */
+  align-items: center;    /* center label under radio */
+  flex: 1;                /* equal width for each option */
+  text-align: center;
+}
+
+.packageradio input[type="radio"] {
+  margin-bottom: 8px;     /* space between radio and label */
+}
+
+
+.radio-group2 {
+  display: flex;
+  justify-content: space-between; /* equal spacing across the div */
+  align-items: flex-start;        /* align items at the top */
+  width: 100%;                    /* full width of parent */
+  max-width: 600px;               /* optional: limit width */
+  margin: 0 auto;    
+  gap: 10px;                      /* space between radio options */
+
 }
 
 .radio-group  label {
   font-weight: 500;
   color: #555;
+
 }
+
+
 
 .address-group {
   margin-bottom: 1.5rem;
