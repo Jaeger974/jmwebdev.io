@@ -337,6 +337,29 @@ body {
     transform: scale(0.98);
 }  
 
+#delete-account-secion{
+    text-align: center;
+    margin-bottom: 10px;
+    border: 4px solid rgb(165, 32, 32);
+    max-width: 150px;
+    max-height: 80px;
+}
+
+.delete-account-button{
+    background: #A02c3e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #8b252f;
+    }
+}
+
 
 .footer{
     text-align: center;

@@ -37,9 +37,12 @@ app.use(
   session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
    cookie: {
-     maxAge: 1000 * 60 * 10 * 60,
+     maxAge: 1000 * 60 * 60,
+     httpOnly: true,
+     secure: process.env.NODE_ENV === "production", // only HTTPS in prod
+    sameSite: "lax" 
    }// 60 MINUTE SESSION DURATION
 })
 );
@@ -84,22 +87,22 @@ app.get("/payment", (req, res) => {
 
 
 
-app.get("/yourdashboard", async (req, res) => {
-
-  if (!req.session.signupData) {
-    return res.redirect("/payment");
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
   }
+  res.redirect("/login");
+}
 
+app.get("/yourdashboard", ensureAuthenticated, async (req, res) => {
   try {
-    const email = req.session.signupData.email;
+    const email = req.user.email; // comes from deserializeUser
     const result = await db.query("SELECT * FROM logins WHERE email = $1", [email]);
     const result2 = await db.query("SELECT * FROM addresses WHERE account_email = $1", [email]);
-    const user = result.rows[0];
-    const address = result2.rows[0];
 
     res.render("PS_account", {
-      signupData: user,
-      signupData2: address,
+      signupData: result.rows[0],
+      signupData2: result2.rows[0],
       savedDate
     });
   } catch (err) {
@@ -107,6 +110,7 @@ app.get("/yourdashboard", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
 
 app.get("/accountchanges", (req, res) => {
     res.render("PS_account-options");
@@ -363,10 +367,17 @@ passport.use(
 
 
 passport.serializeUser((user, cb) => {
-cb(null, user);
+cb(null, user.id); // store only ID
 });
-passport.deserializeUser((user, cb) => {
-   cb(null, user);
+
+passport.deserializeUser(async (id, cb) => {
+  try {
+    const result = await db.query("SELECT * FROM logins WHERE id = $1", [id]);
+    cb(null, result.rows[0]);
+  } catch (err) {
+    cb(err);
+  }
 });
+
 
 app.listen(PORT, () => console.log(`Server running at localhost:${PORT}`));

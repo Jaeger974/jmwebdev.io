@@ -17,10 +17,11 @@
     <form action="/login" method="POST" class="login-form">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
-
-        <label for="password">Password:</label>
+        <label for="password">Password:</label><div class="password-container">
+        
         <input type="password" id="password" name="password" required>
-
+        <button type="button" id="togglePassword" aria-label="Show password">Show</button>
+        </div>
         <button type="submit" class="login-button">Login</button>
     </form>
     <p class="signup-link">Don't have an account? <a href="/newsignup">Sign up here</a></p>
@@ -28,7 +29,7 @@
 
 <div class="OAuth-login-options">
     <p>Or login with:</p>
-    <a class="oauth-button-google" href="/auth/google" role="button">Google
+    <a class="oauth-button-google" href="/auth/google" role="button"><img class="google_logo"src="/static_files/Google_logo.png" alt="google logo"/>
     <i class="fab fa-google"></i>
     </a>
 
@@ -39,18 +40,28 @@
     <a class="oauth-button-twitter" href="/auth/twitter" role="button">Twitter
     <i class="fab fa-twitter"></i>
     </a>
+
 </div>
-
-
-
-
-
 
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" src="/Clientside_JS/PoetrySub.js" type="module"></script>
+
+<script>
+    const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+
+togglePassword.addEventListener("click", () => {
+  const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+  passwordInput.setAttribute("type", type);
+
+  // Update button text
+  togglePassword.textContent = type === "password" ? "Show" : "Hide";
+});
+</script>
+
 
 <%- include("partials/PS_footer.ejs") %>
 </body>
