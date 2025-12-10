@@ -30,8 +30,8 @@
 
         <div id="current-subscription-details">
             <h3>Your Current Subscription</h3>
-            <p>Subscription Type: <%= signupData.sub_type %></p>
-                <p>Frequency: <%= signupData.freq_type %></p>
+            <p>Subscription Type: <%= signupData2.sub_type %></p>
+                <p>Frequency: <%= signupData2.freq_type %></p>
 
             <p>Next Amourly:</p>
             <p id="preview-poem">How do I love thee? Let me count the ways.
@@ -47,8 +47,8 @@
                 I love thee with a love I seemed to lose
                 With my lost saints. I love thee with the breath,
                 Smiles, tears, of all my life; and, if God choose,
-                I shall but love thee better after death.</p>
-                <p><strong>Elizabeth Barrett Browning</strong> </p>
+                I shall but love thee better after death.
+                <strong>- Elizabeth Barrett Browning</strong> </p>
             <p>Next Billing Date:</p>
 
 
@@ -57,13 +57,13 @@
         <div id="delivery-details">
             <h3>Recipient Details</h3>
 
-            <p>Delivery Email: </p><span id="editable-text-email"><%= signupData.recipientEmail %></span>
+            <p>Delivery Email: </p><span id="editable-text-email"><%= signupData.recipient_email %></span>
             <input type="text" id="edit-input-email" style="display:none;" name="recipient-email"/>
             <button class="edit-button-email"onclick="toggleEditEmail()">Edit Email</button>
             <button class="edit-btnemail" onclick="saveEditEmail()" style="display:none;" id="save-btnemail">Save New Email</button>
 <br/><br/>
 
-            <p>Address:</p><span id="editable-text-address"><%= signupData.recipientAddress || `N/A` %></span>
+            <p>Address:</p><span id="editable-text-address"><%= signupData2.recipientAddress || `N/A` %></span>
             <input type="text" id="edit-input" style="display:none;" name="recipientpost"/>
             <button class="edit-button"onclick="toggleEdit()">Edit Address</button>
             <button class="edit-button" onclick="saveEdit()" style="display:none;" id="save-btn">Save New Address</button>

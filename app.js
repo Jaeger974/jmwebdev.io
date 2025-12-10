@@ -93,7 +93,7 @@ app.get("/yourdashboard", async (req, res) => {
   try {
     const email = req.session.signupData.email;
     const result = await db.query("SELECT * FROM logins WHERE email = $1", [email]);
-    const result2 = await db.query("SELECT * FROM addresses WHERE email = $1", [email]);
+    const result2 = await db.query("SELECT * FROM addresses WHERE account_email = $1", [email]);
     const user = result.rows[0];
     const address = result2.rows[0];
 
@@ -160,6 +160,7 @@ app.post("/login",
   passport.authenticate("local", {
     successRedirect: "/account",
     failureRedirect: "/login",
+    faliureFlash: true,
   })
 );
 
@@ -321,14 +322,13 @@ passport.use(
           }
         });
       } else {
-        return cb("User not found");
+        return cb(null, false, { message: "User not found" });
       }
     } catch (err) {
       console.log(err);
       return cb(err);
     }
-  })
-);
+  }));
 
 passport.use(
   "google",
