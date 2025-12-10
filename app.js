@@ -40,7 +40,7 @@ app.use(
   saveUninitialized: true,
    cookie: {
      maxAge: 1000 * 60 * 10 * 60,
-   }// 10 MINUTE SESSION DURATION
+   }// 60 MINUTE SESSION DURATION
 })
 );
 
@@ -84,8 +84,28 @@ app.get("/payment", (req, res) => {
 
 
 
-app.get("/yourdashboard", (req, res) => {
-    res.render("PS_account", { savedDate: savedDate });
+app.get("/yourdashboard", async (req, res) => {
+
+  if (!req.session.signupData) {
+    return res.redirect("/payment");
+  }
+
+  try {
+    const email = req.session.signupData.email;
+    const result = await db.query("SELECT * FROM logins WHERE email = $1", [email]);
+    const result2 = await db.query("SELECT * FROM addresses WHERE email = $1", [email]);
+    const user = result.rows[0];
+    const address = result2.rows[0];
+
+    res.render("PS_account", {
+      signupData: user,
+      signupData2: address,
+      savedDate
+    });
+  } catch (err) {
+    console.error("DB error:", err);
+    res.status(500).send("Server error");
+  }
 });
 
 app.get("/accountchanges", (req, res) => {
@@ -276,10 +296,10 @@ app.post("/newsignup", async (req, res) => {
 
 passport.use(
   "local",
-  new Strategy({ usernameField: 'username' }, async function verify(username, password, cb) {
+  new Strategy({ usernameField: 'email' }, async function verify(email, password, cb) {
     try {
-      const result = await db.query("SELECT * FROM logins WHERE username = $1", [
-        username,
+      const result = await db.query("SELECT * FROM logins WHERE email = $1", [
+        email,
       ]);
       if (result.rows.length > 0) {
 

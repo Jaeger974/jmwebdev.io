@@ -192,23 +192,65 @@ form input:focus, form textarea:focus, form select:focus {
   to { opacity: 1; transform: translateY(0); }
 }
 
-button {
-  width: 100%;
-  padding: 0.8rem;
-  background: linear-gradient(135deg, #6a82fb, #fc5c7d);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+.btn-primary {
+    position: relative; /* Essential for positioning hearts */
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #A02c3e;
+    color: #A02c3e;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: visible; /* Allows hearts to float outside the button */
+    transition: all 0.3s ease;
+    border-radius: 4px; /* Optional */
 }
 
-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+.btn-primary:hover {
+    background: #A02c3e;
+    color: white;
 }
+
+/* The Heart Particle */
+.heart-bubble {
+    position: absolute;
+    bottom: 100%; /* Starts exactly at top edge of button */
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #A02c3e;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    pointer-events: none; /* User clicks pass through hearts */
+    opacity: 0;
+    z-index: 10;
+}
+
+/* The Animation */
+@keyframes floatPop {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(-5px) scale(0.5);
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        /* The Pop: Move up significantly and scale up before vanishing */
+        transform: translateY(-40px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+
 
 .footer{
     text-align: center;

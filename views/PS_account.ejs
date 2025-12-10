@@ -14,7 +14,7 @@
 <div class="account-container">
         <div id="account-overview">
             <h2>Welcome to Your Account</h2>
-            <p>Manage your subscription and personal details here.</p>
+            <p>Manage your subscription and Personal details here.</p>
         </div>
 
     <div class="account-top-row">
@@ -22,15 +22,17 @@
 
         <div id="personal-details">
             <h3>Your Details</h3>
-            <p>Name: John Doe</p>
-            <p>Email:</p>
-            <span>johndoe@gmail.com</span>
+            <p>Name: <%= signupData.firstname %> <%= signupData.lastname %></p>
+            <p>Email: <%= signupData.email %></p>
+            <p>Username: <%= signupData.username %></p>
 
         </div>
 
         <div id="current-subscription-details">
             <h3>Your Current Subscription</h3>
-            <p> <% name="sub_type" %> </p><p>Subscription Type: Passionate Outpour</p>
+            <p>Subscription Type: <%= signupData.sub_type %></p>
+                <p>Frequency: <%= signupData.freq_type %></p>
+
             <p>Next Amourly:</p>
             <p id="preview-poem">How do I love thee? Let me count the ways.
                 I love thee to the depth and breadth and height
@@ -47,7 +49,7 @@
                 Smiles, tears, of all my life; and, if God choose,
                 I shall but love thee better after death.</p>
                 <p><strong>Elizabeth Barrett Browning</strong> </p>
-            <p>Next Billing Date: July 15, 2025</p>
+            <p>Next Billing Date:</p>
 
 
         </div>    
@@ -55,13 +57,13 @@
         <div id="delivery-details">
             <h3>Recipient Details</h3>
 
-            <p>Email: </p><span id="editable-text-email">janedoe@gmail.com</span>
+            <p>Delivery Email: </p><span id="editable-text-email"><%= signupData.recipientEmail %></span>
             <input type="text" id="edit-input-email" style="display:none;" name="recipient-email"/>
             <button class="edit-button-email"onclick="toggleEditEmail()">Edit Email</button>
             <button class="edit-btnemail" onclick="saveEditEmail()" style="display:none;" id="save-btnemail">Save New Email</button>
 <br/><br/>
 
-            <p>Address:</p><span id="editable-text-address">45 Montgomery Court, Colchester, Essex, CO6 5JT</span>
+            <p>Address:</p><span id="editable-text-address"><%= signupData.recipientAddress || `N/A` %></span>
             <input type="text" id="edit-input" style="display:none;" name="recipientpost"/>
             <button class="edit-button"onclick="toggleEdit()">Edit Address</button>
             <button class="edit-button" onclick="saveEdit()" style="display:none;" id="save-btn">Save New Address</button>
@@ -92,7 +94,7 @@
         <div id="subscription-history">
             <h3>Subscription History</h3>
             <ul id="history-list">
-                <li>June 15, 2025 - Passionate Outpour - Billed $29.99</li>
+                <li>June 15, 2025 - Passionate Outpour - Billed </li>
                 <li>May 15, 2025 - Passionate Outpour - Billed $29.99</li>
                 <li>April 15, 2025 - Passionate Outpour - Billed $29.99</li>
             </ul>
@@ -100,7 +102,7 @@
 
         <div id="payment-methods">
             <h3 id="payment-title">Payment Methods</h3>
-            <p>Recurring Billing: 29.99 GBP</p>
+            <p>Next Payment due: 29.99 GBP</p>
             <p>Visa ending in 1234</p>
             <button class="update-payment-button">Update Payment Method</button>
         </div>
