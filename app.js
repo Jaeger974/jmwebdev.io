@@ -145,7 +145,7 @@ app.get(
 app.get(
   "/auth/google/secrets",
   passport.authenticate("google", {
-    successRedirect: "/account",
+    successRedirect: "/yourdashboard",
     failureRedirect: "/login",
   })
 );
@@ -162,9 +162,9 @@ app.post('/save-date', (req, res) => {
 
 app.post("/login",
   passport.authenticate("local", {
-    successRedirect: "/account",
+    successRedirect: "/yourdashboard",
     failureRedirect: "/login",
-    faliureFlash: true,
+    failureFlash: true,
   })
 );
 
