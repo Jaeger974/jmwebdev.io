@@ -24,6 +24,7 @@
 <% } %>
 
 <main class="main-container">
+
     <div class="login-container">
         <h2>Login to Your Account</h2>
         <form action="/login" method="POST" class="login-form">
@@ -41,16 +42,17 @@
 
     <div class="OAuth-login-options">
         <p>Or login with:</p>
-        <a href="/auth/google" role="button"><img class="google_logo" src="/static_files/Google_logo.png" alt="google logo"/>
-        </a>
+            <div class="oauth-buttons">
+                <a href="/auth/google" role="button"><img class="google_logo" src="/static_files/Google_logo.png" alt="google logo"/>
+                </a>
 
-        <a href="/auth/facebook" role="button"><img class="facebook_logo" src="/static_files/facebook_logo.jpg" alt="facebook logo"/>
-        </a>
+                <a href="/auth/facebook" role="button"><img class="facebook_logo" src="/static_files/facebook_logo.jpg" alt="facebook logo"/>
+                </a>
 
-        <a href="/auth/twitter" role="button"><img class="twitter_logo" src="/static_files/X_logo.png" alt="twitter logo"/>
+                <a href="/auth/twitter" role="button"><img class="twitter_logo" src="/static_files/X_logo.png" alt="twitter logo"/>
 
-        </a>
-
+                </a>
+            </div>
     </div>
 </main>
 
