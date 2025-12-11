@@ -15,29 +15,37 @@
 <div class="intro-section">
 
     <div class="slider">
-        <div class="slides">
-            <img src="/static_files/Couple1.jpg" class="slide active" alt="Image 1">
-            <img src="/static_files/Couple2.jpg" class="slide" alt="Image 2">
-            <img src="/static_files/Couple3.jpg" class="slide" alt="Image 3">
-            <img src="/static_files/Couple4.jpg" class="slide" alt="Image 4">
-            <img src="/static_files/Couple5.jpg" class="slide" alt="Image 5">
+        <div class="slide active">
+            <img src="/static_files/Couple1.jpg" alt="Couple Photo 1">
         </div>
- 
-        <div class="dots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-            <span class="dot" data-index="3"></span>
-            <span class="dot" data-index="4"></span>
-            <span class="dot" data-index="5"></span>
+        <div class="slide">
+            <img src="/static_files/Couple2.jpg" alt="Couple Photo 2">
         </div>
-    </div>
+        <div class="slide">
+            <img src="/static_files/Couple3.jpg" alt="Couple Photo 3">
+        </div>
+        <div class="slide">
+            <img src="/static_files/Couple4.jpg" alt="Couple Photo 4">
+        </div>
+        <div class="slide">
+            <img src="/static_files/Couple5.jpg" alt="Couple Photo 5">
+        </div>
 
-    <div class="intro">
-        <h2>Welcome to Amourly</h2>
-        <p>At Amourly, we believe in the power of words to express love and affection. Our personalized poetry subscription service delivers heartfelt poems directly to your inbox, crafted to celebrate your unique relationships. Whether it's for anniversaries, birthdays, or just because, let us help you convey your deepest emotions through the art of poetry.</p>
-        <p>Sign up today and start sharing the magic of poetry with your loved ones!</p>
+        <div class="overlay-text">
+            <h2>Welcome to Amourly</h2>
+                <p>At Amourly, we believe in the power of words to express love and affection. Our personalized poetry subscription service delivers heartfelt poems directly to your inbox, crafted to celebrate your unique relationships. Whether it's for anniversaries, birthdays, or just because, let us help you convey your deepest emotions through the art of poetry.</p>
+                <p>Sign up today and start sharing the magic of poetry with your loved ones!</p>
+        </div>
     </div>
+</div>
+
+  <div class="dots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+    <span class="dot" data-index="3"></span>
+    <span class="dot" data-index="4"></span>
+  </div>
 </div>
 
 
@@ -142,7 +150,55 @@
 <!-- Bootstrap JS (client-side only) -->
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-src="/Clientside_JS/PoetrySub.js" type="module"></script>
+src="/Clientside_JS/PoetrySub.js" type="module">
+</script>
+
+<script>
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+let currentIndex = 0;
+let timer;
+
+function showSlide(index) {
+  // reset all slides
+  slides.forEach(slide => slide.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
+
+  // activate chosen slide + dot
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+
+  currentIndex = index;
+}
+
+function nextSlide() {
+  let nextIndex = (currentIndex + 1) % slides.length; // loop back to 0 after 5
+  showSlide(nextIndex);
+}
+
+function startAutoPlay() {
+  timer = setInterval(nextSlide, 10000); // 10 seconds
+}
+
+function stopAutoPlay() {
+  clearInterval(timer);
+}
+
+// Dot click event
+dots.forEach(dot => {
+  dot.addEventListener("click", () => {
+    stopAutoPlay(); // stop auto-play when user clicks
+    const index = parseInt(dot.dataset.index);
+    showSlide(index);
+    startAutoPlay(); // restart auto-play
+  });
+});
+
+// Start autoplay on load
+showSlide(0);
+startAutoPlay();
+</script>
+
 
 <%- include("partials/PS_footer.ejs") %>
 
