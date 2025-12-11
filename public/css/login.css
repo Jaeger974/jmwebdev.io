@@ -42,6 +42,46 @@ body {
     }
 }
 
+.main-container {
+    align-content: start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    border: #0077cc 6px solid;
+}
+
+/* #logout-alert {
+  position: fixed;               
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 5px;
+ 
+  z-index: 9999;           
+  opacity: 1;
+  transition: opacity 1s ease;
+} */
+
+.alert-success {
+    position: fixed;
+    color: green;
+    margin: 15px;
+    font-size: 16px;
+    background-color: #d4edda;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 9999;            /* ensure it's above everything */
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.alert-warning {
+    color: red;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
 .login-container {
     max-width: 400px;
     margin: 50px auto;
@@ -110,28 +150,24 @@ body {
 
 .OAuth-login-options{
     margin: 20px;
-    text-align: center;
     border: #8b252f 2px solid;
+    max-width: fit-content;
+    padding: 10px;
+    justify-items: center;
+    max-width: 400px;
 }
 
-/* .oauth-button-google{
-    background: #db4437;
-    padding: 10px 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
 
-    &:hover {
-        background: #c33d2e;
-    }
-} */
 
 .google_logo{
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     vertical-align: middle;
     margin-right: 8px;
     border-radius: 50%;
+    object-fit: cover;         /* ensures image fills area without distortion */
+    object-position: center;   /* centers the image inside the circle */
+    display: block;   
     cursor: pointer;
     transition: transform 1.2s ease;
 
@@ -142,11 +178,14 @@ body {
 }
 
 .facebook_logo{
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     vertical-align: middle;
     margin-right: 8px;
     border-radius: 50%;
+    object-fit: cover;         /* ensures image fills area without distortion */
+    object-position: center;   /* centers the image inside the circle */
+    display: block;   
     cursor: pointer;
     transition: transform 1.2s ease;
 
@@ -157,11 +196,14 @@ body {
 }
 
 .twitter_logo{
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     vertical-align: middle;
     margin-right: 8px;
     border-radius: 50%;
+      object-fit: cover;         /* ensures image fills area without distortion */
+  object-position: center;   /* centers the image inside the circle */
+  display: block;   
     cursor: pointer;
     transition: transform 1.2s ease;
 

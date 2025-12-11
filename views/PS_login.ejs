@@ -11,38 +11,48 @@
 
 <%- include("partials/PS_header.ejs") %>
 
+<% if (logoutMessage) { %>
+  <div id="logout-alert" class="alert-success">
+    <%= logoutMessage %>
+  </div>
+<% } %>
 
-<div class="login-container">
-    <h2>Login to Your Account</h2>
-    <form action="/login" method="POST" class="login-form">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Password:</label><div class="password-container">
-        
-        <input type="password" id="password" name="password" required>
-        <button type="button" id="togglePassword" aria-label="Show password">Show</button>
-        </div>
-        <button type="submit" class="login-button">Login</button>
-    </form>
-    <p class="signup-link">Don't have an account? <a href="/newsignup">Sign up here</a></p>
-</div>
+<% if (message) { %>
+  <div class="alert-warning">
+    <%= message %>
+  </div>
+<% } %>
 
-<div class="OAuth-login-options">
-    <p>Or login with:</p>
-    <a class="oauth-button-google" href="/auth/google" role="button"><img class="google_logo"src="/static_files/Google_logo.png" alt="google logo"/>
-    <i class="fab fa-google"></i>
-    </a>
+<main class="main-container">
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form action="/login" method="POST" class="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label><div class="password-container">
+            
+            <input type="password" id="password" name="password" required>
+            <button type="button" id="togglePassword" aria-label="Show password">Show</button>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <p class="signup-link">Don't have an account? <a href="/newsignup">Sign up here</a></p>
+    </div>
 
-    <a class="oauth-button-facebook" href="/auth/facebook" role="button"><img class="facebook_logo" src="/static_files/facebook_logo.jpg" alt="facebook logo"/>
-    <i class="fab fa-facebook-f"></i>
-    </a>
+    <div class="OAuth-login-options">
+        <p>Or login with:</p>
+        <a href="/auth/google" role="button"><img class="google_logo" src="/static_files/Google_logo.png" alt="google logo"/>
+        </a>
 
-    <a class="oauth-button-twitter" href="/auth/twitter" role="button"><img class="twitter_logo" src="/static_files/X_logo.png" alt="twitter logo"/>
-    <i class="fab fa-twitter"></i>
-    </a>
+        <a href="/auth/facebook" role="button"><img class="facebook_logo" src="/static_files/facebook_logo.jpg" alt="facebook logo"/>
+        </a>
 
-</div>
+        <a href="/auth/twitter" role="button"><img class="twitter_logo" src="/static_files/X_logo.png" alt="twitter logo"/>
 
+        </a>
+
+    </div>
+</main>
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -60,6 +70,20 @@ togglePassword.addEventListener("click", () => {
   // Update button text
   togglePassword.textContent = type === "password" ? "Show" : "Hide";
 });
+</script>
+
+<script>
+  // Fade out logout message after 3 seconds
+  window.addEventListener("DOMContentLoaded", () => {
+    const alertBox = document.getElementById("logout-alert");
+    if (alertBox) {
+      setTimeout(() => {
+        alertBox.style.transition = "opacity 1s ease";
+        alertBox.style.opacity = "0";
+        setTimeout(() => alertBox.remove(), 1000); // remove after fade
+      }, 3000);
+    }
+  });
 </script>
 
 

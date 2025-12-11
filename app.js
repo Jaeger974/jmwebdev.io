@@ -66,8 +66,14 @@ app.get("/login", (req, res) => {
   const message = req.query.msg === "emailExists"
     ? "This email is already registered. Please log in."
     : null;
-  res.render("PS_login", { message });
+
+  const logoutMessage = req.query.loggedout === "true"
+    ? "You are successfully logged out."
+    : null;
+
+  res.render("PS_login", { message, logoutMessage });
 });
+
 
 app.get("/register", (req, res) => {
     res.render("PS_register");
@@ -149,6 +155,23 @@ app.get(
     failureRedirect: "/login",
   })
 );
+
+
+app.get("/logout", (req, res, next) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error destroying session:", err);
+      }
+      res.clearCookie("connect.sid");
+      // Redirect with a flag
+      res.redirect("/login?loggedout=true");
+    });
+  });
+});
+
 
 
 app.post('/save-date', (req, res) => {
