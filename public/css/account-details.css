@@ -1,0 +1,189 @@
+/* account-details.css */
+
+/* Page base and palette */
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --accent: #A02c3e;   /* primary button / links */
+  --accent-600: #c21313cb;
+  --accent-100: #e6f0ff;
+  --input-border: #d1d5db;
+  --shadow: 0 6px 18px rgba(160,44,62,0.12);
+  --radius: 10px;
+  --success-bg: #d4edda;
+  --error-bg: #f8d7da;
+  --info-bg: #d1ecf1;
+}
+
+/* Page background */
+body {
+  background: linear-gradient(180deg, var(--bg), #ffffff 60%);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.account-options-container {
+  max-width: 920px;
+  margin: 48px auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  border: 1px solid #A02c3e;
+}
+
+/* Heading */
+.account-options-container h2 {
+  margin: 0 0 18px 0;
+  font-size: 1.375rem;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Form layout */
+.account-options-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  align-items: start;
+}
+
+/* Full width row for address or long fields */
+.account-options-form .full {
+  grid-column: 1 / -1;
+}
+
+/* Labels */
+.account-options-form label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* Inputs */
+.account-options-form input[type="text"],
+.account-options-form input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: box-shadow 160ms ease, border-color 160ms ease, transform 120ms ease;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Focus state */
+.account-options-form input:focus {
+  border-color: var(--accent-600);
+  box-shadow: 0 6px 18px rgba(160,44,62,0.12);
+  transform: translateY(-1px);
+}
+
+/* Small helper text (if needed) */
+.account-options-form .hint {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+/* Submit button */
+.account-options-button{
+  grid-column: 1 / -1;
+  display: inline-block;
+  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px #A02c3e;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Button hover / active */
+.account-options-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px #A02c3e;
+}
+.account-options-button:active {
+  transform: translateY(0);
+  opacity: 0.98;
+}
+
+.cancel-button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--input-border);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+
+
+/* Alert partial compatibility */
+.alert-wrapper {
+  position: relative;
+  height: 0;
+  margin-bottom: 12px;
+}
+.alert {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease-in-out;
+  z-index: 999;
+  min-width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.06);
+}
+.alert.show { opacity: 1; pointer-events: auto; }
+.alert.success { background: var(--success-bg); color: #155724; }
+.alert.error   { background: var(--error-bg); color: #721c24; }
+.alert.info    { background: var(--info-bg); color: #0c5460; }
+
+/* Responsive */
+@media (max-width: 720px) {
+  .account-options-container {
+    margin: 20px;
+    padding: 20px;
+  }
+  .account-options-form {
+    grid-template-columns: 1fr;
+  }
+  .alert { left: 16px; transform: none; top: -12px; min-width: calc(100% - 32px); }
+}
+
+/* Accessibility focus outline for keyboard users */
+.account-options-form input:focus-visible,
+.account-options-button:focus-visible {
+  outline: 3px solid rgba(37,99,235,0.14);
+  outline-offset: 2px;
+}

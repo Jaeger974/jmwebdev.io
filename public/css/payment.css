@@ -1,0 +1,279 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff9f5;
+  font-family: Arial, sans-serif;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.header{
+    text-align: center;
+    padding: 20px;
+    background: #A02c3e;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.nav-bar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border: 3px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(209, 204, 204, 0.1);
+
+}
+
+.nav-link{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.7s ease;
+    transition: transform 0.3s ease;
+    will-change: transform;
+
+    &:hover {
+        color: #f8d77c;
+        transform: scale(1.05);
+    }
+
+}
+
+.page-title {
+    text-align: center;
+    margin: 30px 0 20px 0;
+    font-size: large;
+    color: #333;
+
+}
+
+.main-body{
+    text-align: center;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    position: fixed;
+    top: 400px;
+    left: 50px;
+    background: #d35151;
+    color:#fcd6d6; /* Inherit text color from parent */
+    text-decoration: none; 
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-secondary:hover {
+    background: #5a6edc;
+    transform: translateY(-2px);
+}
+
+
+.payment-page-container{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    align-self: center;
+    background: #fff9f5;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    animation: fadeIn 0.8s ease-in-out;
+    margin-bottom: 30px;
+};
+
+.confirmation-container{
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    animation: fadeIn 0.8s ease-in-out;
+    margin-bottom: 30px;
+};
+
+
+.payment-container{
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.8s ease-in-out;
+};
+
+.payment-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+form label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 600;
+  color: #444;
+}
+
+form input, form textarea, form select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus, form textarea:focus, form select:focus {
+  border-color: #6a82fb;
+  box-shadow: 0 0 8px rgba(106,130,251,0.4);
+  outline: none;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-group label {
+  position: absolute;
+  left: 12px;
+  top: 40%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  top: 18px;
+}
+
+/* When input has focus or text */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  font-size: 0.8rem;
+  color: #6a82fb;
+  background: #fff;
+  padding: 0 4px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-primary {
+    position: relative; /* Essential for positioning hearts */
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #A02c3e;
+    color: #A02c3e;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: visible; /* Allows hearts to float outside the button */
+    transition: all 0.3s ease;
+    border-radius: 4px; /* Optional */
+}
+
+.btn-primary:hover {
+    background: #A02c3e;
+    color: white;
+}
+
+/* The Heart Particle */
+.heart-bubble {
+    position: absolute;
+    bottom: 100%; /* Starts exactly at top edge of button */
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #A02c3e;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    pointer-events: none; /* User clicks pass through hearts */
+    opacity: 0;
+    z-index: 10;
+}
+
+/* The Animation */
+@keyframes floatPop {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(-5px) scale(0.5);
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        /* The Pop: Move up significantly and scale up before vanishing */
+        transform: translateY(-40px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .main-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .btn-secondary {
+        position: static;
+        margin: 20px auto;
+    }
+}
+
+.footer{
+    text-align: center;
+    padding: 20px;
+    background: #b19696;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+    font-size: 14px;
+    border-top: 2px solid white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}

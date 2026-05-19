@@ -1,0 +1,103 @@
+/* Container */
+.main-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Deleted account message */
+.deleted-account-info {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.deleted-account-info h2 {
+    font-size: 28px;
+    color: #A02c3e;
+    margin-bottom: 10px;
+}
+
+.deleted-account-info p {
+    font-size: 16px;
+    color: #444;
+}
+
+/* Feedback box */
+.feedback-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.feedback-container h3 {
+    color: #A02c3e;
+    margin-bottom: 10px;
+}
+
+.feedback-container p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.feedback-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.feedback-form select,
+.feedback-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: border 0.2s ease;
+}
+
+.feedback-form select:focus,
+.feedback-form textarea:focus {
+    border-color: #A02c3e;
+    outline: none;
+}
+
+/* Rating groups */
+.rating-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.rating-group label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+/* Buttons */
+.submit-feedback-btn,
+.home-button {
+    margin-top: 25px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 999px;
+    background: #A02c3e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.submit-feedback-btn:hover,
+.home-button:hover {
+    background: #7d1f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(160,44,62,0.4);
+}

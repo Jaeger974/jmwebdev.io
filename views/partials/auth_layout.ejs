@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/auth-shared.css">
+</head>
+
+<body>
+
+<%- include("PS_header") %>
+<%- include("alert", { flash: flash }) %>
+
+<main class="auth-main">
+    <div class="auth-card slide-in">
+        <h2><%= heading %></h2>
+
+        <%- body %>
+
+    </div>
+</main>
+
+<%- include("PS_footer") %>
+
+</body>
+</html>

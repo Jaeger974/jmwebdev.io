@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sad to see you leave!</title>
+
+    <link rel="stylesheet" href="css/deletefeedback.css"/>
+    <link rel="stylesheet" href="/css/alert.css">
+</head>
+<body>
+
+<%- include("partials/PS_header.ejs") %>
+<%- include("partials/alert", { flash: flash }) %>
+
+<main class="main-container">
+
+    <div class="deleted-account-info">
+        <h2>We are sad to see you go!</h2>
+        <p>Your account has been successfully deleted. We hope to see you again in the future.</p>
+    </div>
+
+    <!-- FEEDBACK FORM -->
+    <div class="feedback-container">
+        <h3>Your feedback matters to us</h3>
+        <p>Please take a moment to tell us about your experience.</p>
+
+        <form action="/deletefeedback" method="POST" class="feedback-form">
+
+            <!-- Reason for leaving -->
+            <label for="reason">What was the main reason for deleting your account?</label>
+            <select name="reason" id="reason" required>
+                <option value="">Select a reason</option>
+                <option value="not-useful">I didn’t find the service useful</option>
+                <option value="too-expensive">It was too expensive</option>
+                <option value="technical-issues">I had technical issues</option>
+                <option value="privacy-concerns">I had privacy concerns</option>
+                <option value="temporary-break">I’m taking a break</option>
+                <option value="other">Other</option>
+            </select>
+
+            <!-- Satisfaction rating -->
+            <label>How satisfied were you with your overall experience?</label>
+            <div class="rating-group">
+                <label><input type="radio" name="satisfaction" value="1" required> 1</label>
+                <label><input type="radio" name="satisfaction" value="2"> 2</label>
+                <label><input type="radio" name="satisfaction" value="3"> 3</label>
+                <label><input type="radio" name="satisfaction" value="4"> 4</label>
+                <label><input type="radio" name="satisfaction" value="5"> 5</label>
+            </div>
+
+            <!-- Likelihood to return -->
+            <label>How likely are you to return in the future?</label>
+            <div class="rating-group">
+                <label><input type="radio" name="return_likelihood" value="1" required> 1</label>
+                <label><input type="radio" name="return_likelihood" value="2"> 2</label>
+                <label><input type="radio" name="return_likelihood" value="3"> 3</label>
+                <label><input type="radio" name="return_likelihood" value="4"> 4</label>
+                <label><input type="radio" name="return_likelihood" value="5"> 5</label>
+            </div>
+
+            <!-- Free text -->
+            <label for="comments">Any additional comments?</label>
+            <textarea name="comments" id="comments" rows="4" placeholder="Tell us anything else you'd like us to know..."></textarea>
+
+            <button type="submit" class="submit-feedback-btn">Submit Feedback</button>
+        </form>
+
+    </div>
+
+</main>
+
+<%- include("partials/PS_footer.ejs") %>
+
+</body>
+</html>

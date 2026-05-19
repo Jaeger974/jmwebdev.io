@@ -1,0 +1,426 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #fff5f6 0%, #fbe3e6 100%);
+  font-family: Arial, sans-serif;
+}
+
+.header{
+    text-align: center;
+    padding: 20px;
+    background: #A02c3e;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.nav-bar {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border: 3px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(209, 204, 204, 0.1);
+
+}
+
+.nav-link{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.7s ease;
+    transition: transform 0.3s ease;
+    will-change: transform;
+
+    &:hover {
+        color: #f8d77c;
+        transform: scale(1.05);
+    }
+}
+
+.success-banner {
+  background: #d4f8d4;
+  color: #27632a;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+
+/* ============================= */
+/* Account Page Base */
+/* ============================= */
+
+.account-container {
+    max-width: 1200px;
+    margin: 70px auto;
+    padding: 30px;
+}
+
+/* Overview Header */
+#account-overview {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+#account-overview h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #A02c3e;
+    margin-bottom: 10px;
+}
+
+#account-overview p {
+    font-size: 18px;
+    color: #444;
+}
+
+#recipient-detail {
+    margin: 15px;
+    padding-top: 15px;;
+}
+
+#editable-text-email, 
+#editable-text-address,
+#editable-text-prefs {
+    display: block;
+    margin-top: 9px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+#recipient-detail p, #personal-details p {
+    font-weight: 600;
+    color: #A02c3e;
+    margin-top: 20px;
+}
+
+/* ============================= */
+/* Layout Rows */
+/* ============================= */
+
+.account-top-row,
+.account-second-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    margin-bottom: 50px;
+}
+
+.account-second-row {
+    border-top: 1px solid rgba(160,44,62,0.15);
+    padding-top: 40px;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 0; /* keep Bootstrap spacing intact*/
+    border-radius: 12px;
+    border: 1px solid rgba(160,44,62,0.15);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08),
+        0 4px 12px rgba(160,44,62,0.08);
+}
+
+.modal-body {
+    padding: 30px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+*/
+
+.btn-close {
+    background: #A02c3e;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+/* ============================= */
+/* Card Base Styling */
+/* ============================= */
+#subscription-history {
+    grid-column: span 2;
+}
+
+#personal-details,
+#current-subscription-details,
+#delivery-details,
+#subscription-history,
+#payment-methods,
+#subscription-management {
+    background: #ffffff;
+    padding: 35px;
+    max-width: auto;
+    border-radius: 18px;
+    border: 1px solid rgba(160,44,62,0.15);
+
+    /* Stronger depth */
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08),
+        0 4px 12px rgba(160,44,62,0.08);
+
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#personal-details::before,
+#current-subscription-details::before,
+#delivery-details::before,
+#subscription-history::before,
+#payment-methods::before,
+#subscription-management::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+    background: linear-gradient(to right, #A02c3e, #d64c60);
+}
+
+#personal-details:hover,
+#current-subscription-details:hover,
+#delivery-details:hover,
+#subscription-history:hover,
+#payment-methods:hover,
+#subscription-management:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.15),
+        0 6px 18px rgba(160,44,62,0.15);
+}
+h3 {
+    color: #A02c3e;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.billing-table {
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    border-collapse: collapse;
+}
+
+
+#account-edit-options {
+gap: 12px;
+display: flex;
+flex-direction: column;
+}
+
+#payment-check {
+    margin-top: 50px;
+}
+/* ============================= */
+/* Buttons */
+/* ============================= */
+
+button {
+    padding: 10px 18px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Primary buttons */
+.edit-details-button,
+.change-password-button,
+.manage-subscription-button,
+.update-payment-button {
+    background: linear-gradient(to right, #A02c3e, #c53b4f);
+    color: #fff;
+    margin: 8px 8px 0 0;
+    border-radius: 20px;
+}
+
+.edit-details-button:hover,
+.change-password-button:hover,
+.manage-subscription-button:hover,
+.update-payment-button:hover,
+.edit-button:hover {
+     transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(160,44,62,0.4);
+}
+
+/* Edit inline buttons */
+
+.edit-button,
+.edit-button-email {
+    background: #A02c3e;
+    color: #fff;
+    margin-left: 10px;
+    border-radius: 20px;
+}
+
+
+.edit-button:hover,
+.edit-button-email:hover {
+    background: #7d1f2f;
+}
+
+/* Save buttons */
+.edit-btnemail,
+.edit-button-hidden {
+    background: #28a745;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.edit-btnemail:hover,
+.edit-button-hidden:hover {
+    background: #1f7d35;
+}
+
+/* ============================= */
+/* Recipient Edit Inputs */
+/* ============================= */
+
+#delivery-details input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+#delivery-details input:focus {
+    border-color: #A02c3e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(160,44,62,0.2);
+}
+
+/* ============================= */
+/* Subscription History */
+/* ============================= */
+
+#history-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#history-list li {
+    background: #fafafa;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* ============================= */
+/* Personalised Poem indicator styling */
+/* ============================= */
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-green {
+  background: #d4f8d4;
+  color: #1a7f1a;
+}
+
+.badge-grey {
+  background: #eee;
+  color: #555;
+}
+
+
+
+/* ============================= */
+/* Preview Poem Styling */
+/* ============================= */
+
+#preview-poem {
+background: linear-gradient(135deg, #fff0f2, #ffe5e8);
+    padding: 18px;
+    border-radius: 12px;
+    font-style: italic;
+    line-height: 1.6;
+    margin-top: 15px;
+    border-left: 5px solid #A02c3e;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+/* ============================= */
+/* Footer Actions */
+/* ============================= */
+
+#logout-section,
+#delete-account-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+/* Logout button */
+.logout-button {
+    background: #444;
+    color: white;
+    border-radius: 20px;
+}
+
+.logout-button:hover {
+    background: #222;
+}
+
+/* Delete account button */
+.delete-account-button {
+    background: #d11a2a;
+    color: white;
+    margin-top: 20px;
+    padding: 12px 24px;
+    border-radius: 20px;
+}
+
+.delete-account-button:hover {
+    background: #a3131f;
+    transform: translateY(-2px);
+}
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 900px) {
+    .account-top-row,
+    .account-second-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.footer{
+    text-align: center;
+    padding: 20px;
+    background: #b19696;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin: 0;
+    font-size: 14px;
+    border-top: 2px solid white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}

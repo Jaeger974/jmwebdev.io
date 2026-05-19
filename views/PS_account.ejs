@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start your subscription!</title>
+
+        <link rel="stylesheet" href="/css/account.css"/>
+        <link rel="stylesheet" href="/css/alert.css"> 
+</head>
+<body>
+
+<%- include("partials/PS_header.ejs") %>
+<%- include("partials/alert", { flash: flash }) %>
+
+
+<div class="account-container">
+        <div id="account-overview">
+            <h2>Welcome to Your Account</h2>
+            <p>Manage your subscription and Personal details here.</p>
+        </div>
+
+  <div class="account-top-row">
+      <div id="personal-details">
+          <h3>Your Details</h3>
+          <p><strong>Name:</strong></p><span> <%= user.firstname %> <%= user.lastname %></span>
+          <p><strong>Email:</strong></p><span> <%= user.email %></span>
+          <p><strong>Username:</strong></p><span> <%= user.username %></span>
+          <p><strong>Address:</strong></p><span> <%= subscription ? subscription.account_address : "No address on file" %></span>
+          
+
+            
+            
+
+    </div>
+
+    <div id="delivery-details">
+        <h3>Recipient Details</h3>
+        <div id="recipient-detail">
+          <p><strong>Delivery Email: </strong></p> <span id="editable-text-email"><%= subscription.recipient_email %></span>
+          <p><strong>Address:</strong></p><span id="editable-text-address"><%= subscription.recipient_address || `Not applicable to current subscription` %></span>
+          <p><strong>Preferences/likes:</strong></p><span id="editable-text-prefs"><%= subscription.preferences || `No preferences on file` %></span>
+        </div>
+      <button class="edit-button" onclick="location.href='/changesubscription'">Edit Recipient Details</button>
+    </div>
+
+    <% 
+    const subTypeLabels = {
+        option1: "School-groud Crush Subscription",
+        option2: "New Love Subscription",
+        option3: "Passionate Outpour Subscription"
+    };
+
+    const freqLabels = {
+        option1: "Fortnightly",
+        option2: "Monthly",
+        option3: "Every 2 Months",
+        option4: "Every 6 Months"
+    };
+    %>
+
+    <div id="current-subscription-details">
+            <h3>Your Current Subscription</h3>
+            <p>Subscription Type: <%= subTypeLabels[subscription.sub_type] %></p>
+                <p>Frequency: <%= freqLabels[subscription.freq_type] %></p>
+
+            <p>Next Amourly:</p>
+            <p id="preview-poem"><%- poemHTML  %>
+                <strong>- <%- poem.author %></strong> </p>
+            <p>Next Scheduled Send date: <%= subscription.scheduled_send_date ? subscription.scheduled_send_date.toLocaleDateString() : "No send date on file" %></p>  
+
+              <button class="send-recipient-email-btn" data-bs-toggle="modal" data-bs-target="#sendRecipientModal">
+                Send Email to Recipient Now
+              </button>
+    </div>    
+    
+  <div id="subscription-management">
+                <div id="account-edit-options">
+                <h3>Edit Your Details:</h3>
+                <button class="edit-details-button" onclick="location.href='/changedetails'">Change Personal Details</button>
+                <button class="change-password-button" onclick="location.href='/changepassword'">Change Password</button>
+                <button class="manage-subscription-button" onclick="location.href='/changesubscription'">Change Subscription</button>
+                
+            </div>
+    <div id="payment-check">
+    <h3 id="payment-title">Payment Methods</h3>
+                  <p>Next Payment scheduled:</p><span><%= nextPayment.toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric"})%>
+</span>
+                  <p>Next Payment Amount: £ </p><span><%= subscriptionCost %></span>
+                  <p>Visa ending in 1234</p>
+                  <button class="update-payment-button">Update Payment Method</button>
+    </div>
+
+</div>
+
+
+  <div id="subscription-history">
+  <h3>Subscription History</h3>
+  <table class="billing-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Personalised?</th>
+        <th>Subscription</th>
+        <th>Frequency</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>         
+    <% transactions.forEach(t => { %>
+      <tr>
+      <td><%= t.created_at.toLocaleDateString() %></td>
+      <td>£<%= t.amount %></td>
+        <td>
+          <% if (t.personalised) { %>
+            <span class="badge badge-green">Personalised</span>
+          <% } else { %>
+            <span class="badge badge-grey">Unpersonalised</span>
+          <% } %>
+        </td>
+      <td><%= subTypeLabels[t.sub_type] %></td>
+      <td><%= freqLabels[t.freq_type] %></td>
+      <td><%= t.status %></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+    <div id="logout-section">
+        <form action="/logout" method="get">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+
+
+<div id="delete-account-section">
+  <a href="/deletefeedback" id="delBtn" class="delete-account-button">
+    Delete Account/Cancel Subscription
+  </a>
+</div>
+
+
+</div>
+
+<div class="modal fade" id="sendRecipientModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Send Email to Recipient?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="/yourdashboard/send-recipient-email" method="POST">
+
+        <div class="modal-body">
+          <p>This will send an email to your recipient informing them of their poetry subscription.</p>
+        </div>
+
+      <form action="/yourdashboard/send-recipient-email" method="POST">
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Send Email</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+<!-- Bootstrap JS - no type="module" -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Your own JS file - type="module" is fine here if you need it -->
+<script src="/Clientside_JS/PoetrySub.js" type="module"></script>
+
+<script src="/Clientside_JS/dateeditor-accountejs.js"></script>
+
+<script>
+  const deleteBtn = document.getElementById('delBtn');
+
+  deleteBtn.addEventListener('click', function (e) {
+    const confirmation = confirm(
+      'Are you sure you want to cancel your subscription and delete your account? This action cannot be undone.'
+    );
+
+    if (!confirmation) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+
+<%- include("partials/PS_footer.ejs") %>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+/* GLOBAL PAGE BACKGROUND */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* AUTH MAIN WRAPPER (centers the card) */
+.auth-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* AUTH CARD (replaces signup-container) */
+.auth-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 650px;
+}
+
+/* HEADING INSIDE CARD */
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* FORM ELEMENTS */
+.auth-form label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.auth-form input,
+.auth-form textarea,
+.auth-form select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.auth-form input:focus,
+.auth-form textarea:focus,
+.auth-form select:focus {
+  border-color: #6a82fb;
+  box-shadow: 0 0 8px rgba(106,130,251,0.4);
+  outline: none;
+}
+
+/* FLOATING LABEL GROUP */
+.floating-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.floating-group input {
+  padding: 0.8rem;
+}
+
+.floating-group label {
+  position: absolute;
+  left: 12px;
+  top: 5px;
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+.floating-group input:focus + label,
+.floating-group input:not(:placeholder-shown) + label {
+  top: -20px;
+  left: 8px;
+  font-size: 0.8rem;
+  color: #6a82fb;
+  background: #fff;
+  padding: 0 4px;
+}
+
+/* PASSWORD MESSAGE */
+#passwordMessage {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  height: 18px;
+  transition: color 0.3s;
+}
+
+#passwordMessage.error { color: #d9534f; }
+#passwordMessage.success { color: #28a745; }
+
+/* ERROR MESSAGE */
+.error-message {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.radio-group2 {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin: 1rem auto;
+  max-width: 600px;
+
+}
+
+.radio-group2 label {
+  color: #555;
+}
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin: 1.5rem auto;
+}
+
+.packageradio label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 16px;
+}
+
+/* Hide default radio */
+.packageradio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Heart container (fixed size so layout never shifts) */
+.packageradio label::before {
+    content: "";
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    z-index: 2;
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s ease;
+    
+    /* Frozen heart look */
+    background: linear-gradient(145deg, #dff6ff, #a8e1ff);
+    clip-path: path("M12 21s-6.7-4.35-9.33-7.72C-0.3 9.44 2.07 4 6.66 4c2.07 0 3.4 1.18 4.34 2.44C11.94 5.18 13.27 4 15.34 4 19.93 4 22.3 9.44 19.33 13.28 16.7 16.65 12 21 12 21z");
+    
+    box-shadow: 0 0 8px rgba(180, 230, 255, 0.8);
+}
+
+/* Snow effect */
+.packageradio label::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: -4px;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        5px 5px white,
+        -6px 8px white,
+        3px 12px white,
+        -4px 15px white;
+    animation: snowFall 2s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes snowFall {
+    0% { transform: translateY(0); opacity: 0.9; }
+    100% { transform: translateY(18px); opacity: 0; }
+}
+
+/* Hover = melting into red */
+.packageradio label:hover::before {
+    background: linear-gradient(145deg, #ff4d4d, #cc0000);
+    box-shadow: 0 0 10px rgba(255, 80, 80, 0.7);
+}
+
+/* Remove snow on hover */
+.packageradio label:hover::after {
+    animation: none;
+    opacity: 0;
+}
+
+/* Checked = heart on fire */
+.packageradio input[type="radio"]:checked + * {
+    font-weight: 500;
+}
+
+.packageradio input[type="radio"]:checked + span,
+.packageradio input[type="radio"]:checked + text {
+    color: inherit;
+}
+
+/* Fire animation */
+.packageradio input[type="radio"]:checked + label::before,
+.packageradio input[type="radio"]:checked ~ label::before {
+    background: linear-gradient(145deg, #ff1a1a, #990000);
+    box-shadow:
+        0 0 8px #ff3300,
+        0 0 18px #ff6600,
+        0 0 28px rgba(255, 80, 0, 0.6);
+    animation: heartBeat 0.9s infinite alternate;
+}
+
+/* Flame flicker */
+.packageradio input[type="radio"]:checked + label::after,
+.packageradio input[type="radio"]:checked ~ label::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: -8px;
+    width: 10px;
+    height: 14px;
+    background: radial-gradient(circle at 50% 80%, #ffff66 10%, #ff6600 50%, transparent 70%);
+    border-radius: 50% 50% 50% 50%;
+    animation: flameFlicker 0.5s infinite alternate;
+}
+
+@keyframes heartBeat {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+@keyframes flameFlicker {
+    from { transform: scaleY(1) translateY(0); opacity: 0.9; }
+    to { transform: scaleY(1.15) translateY(-2px); opacity: 1; }
+}
+
+
+.packageradio label.checked::before {
+    background: linear-gradient(145deg, #ff1a1a, #990000);
+    box-shadow:
+        0 0 8px #ff3300,
+        0 0 18px #ff6600,
+        0 0 28px rgba(255, 80, 0, 0.6);
+    animation: heartBeat 0.9s infinite alternate;
+}
+
+.packageradio label.checked::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 6px;
+    top: -8px;
+    width: 10px;
+    height: 14px;
+    background: radial-gradient(circle at 50% 80%, #ffff66 10%, #ff6600 50%, transparent 70%);
+    border-radius: 50%;
+    animation: flameFlicker 0.5s infinite alternate;
+}
+
+
+/* PRICE BOX */
+.price-box {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.slide-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* SUBMIT BUTTON */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #b19696;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

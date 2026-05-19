@@ -1,0 +1,221 @@
+/* =========================================
+   GLOBAL PAGE LAYOUT
+========================================= */
+
+/* Full-height layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff9f5, #ffffff 60%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #0f1724;
+}
+
+/* Main content grows to push footer down */
+main {
+  flex: 1;
+  display: block;
+}
+
+/* =========================================
+   HEADER + NAV
+========================================= */
+
+.header {
+  text-align: center;
+  padding: 20px;
+  background: #A02c3e;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.nav-bar {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 17px;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #fde9ea;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   LOGIN CONTAINER
+========================================= */
+
+.login-container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 28px 32px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.login-container h2 {
+  margin: 0 0 18px 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #7f232f;
+}
+
+/* =========================================
+   FORM + INPUTS
+========================================= */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-field {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: #A02c3e;
+  box-shadow: 0 6px 18px rgba(160,44,62,0.12);
+  outline: none;
+}
+
+/* Password toggle */
+.password-container {
+  position: relative;
+  
+}
+
+#togglePassword {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #A02c3e;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.login-button {
+  background: linear-gradient(180deg, #A02c3e, #7f232f);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(160,44,62,0.18);
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(160,44,62,0.22);
+}
+
+.login-button:active {
+  transform: translateY(0);
+  opacity: 0.95;
+}
+
+/* =========================================
+   SIGNUP LINK
+========================================= */
+
+.signup-link {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.signup-link a {
+  color: #A02c3e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   OAUTH SECTION
+========================================= */
+
+.OAuth-login-options {
+  margin: 24px;
+  text-align: center;
+}
+
+.oauth-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.google_logo,
+.facebook_logo,
+.twitter_logo {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.google_logo:hover,
+.facebook_logo:hover,
+.twitter_logo:hover {
+  transform: scale(1.15);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #b19696;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+  margin-top: auto;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+}

@@ -1,0 +1,202 @@
+/* =========================================
+   GLOBAL LAYOUT
+========================================= */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff9f5, #ffffff 60%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #0f1724;
+}
+
+.auth-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* =========================================
+   AUTH CARD
+========================================= */
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  padding: 32px 36px;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.auth-card h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #7f232f;
+}
+
+/* =========================================
+   SLIDE-IN ANIMATION
+========================================= */
+
+.slide-in {
+  animation: slideIn 0.55s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   FLOATING LABEL INPUTS
+========================================= */
+
+.floating-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.floating-group input {
+  width: 100%;
+  padding: 14px 12px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-group input:focus {
+  border-color: #A02c3e;
+  box-shadow: 0 6px 18px rgba(160,44,62,0.12);
+  outline: none;
+}
+
+.floating-group label {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  font-size: 0.95rem;
+  color: #6b7280;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* Float label when typing or focused */
+.floating-group input:focus + label,
+.floating-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  background: #fff;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  color: #A02c3e;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.auth-button {
+  width: 100%;
+  background: linear-gradient(180deg, #A02c3e, #7f232f);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(160,44,62,0.18);
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(160,44,62,0.22);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+  opacity: 0.95;
+}
+
+/* =========================================
+   SWITCH LINK
+========================================= */
+
+.auth-switch {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-switch a {
+  color: #A02c3e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   ALERT COMPATIBILITY
+========================================= */
+
+.alert-wrapper {
+  position: relative;
+  height: 0;
+  margin-bottom: 12px;
+}
+
+.alert {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease-in-out;
+  z-index: 999;
+  min-width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.06);
+}
+
+.alert.show { opacity: 1; pointer-events: auto; }
+.alert.success { background: #d4edda; color: #155724; }
+.alert.error   { background: #f8d7da; color: #721c24; }
+.alert.info    { background: #e8f4ff; color: #1e4a78; }
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #b19696;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+}

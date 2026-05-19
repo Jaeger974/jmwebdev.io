@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amourly</title>  
+
+    <link rel="stylesheet" href="css/account-details.css"/> 
+<link rel="stylesheet" href="/css/alert.css">
+</head>
+
+<body>
+
+<%- include("partials/PS_header.ejs") %>
+<%- include("partials/alert", { flash: flash }) %>
+
+
+<div class="account-options-container">
+    <h2>Change Your Personal Details</h2>
+    <form action="/changedetails/update-details" method="POST" class="account-options-form">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstName" value="<%= user.firstname %>" required>
+        
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastName" value="<%= user.lastname %>" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= user.email %>" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" value="<%= subscription.account_address %>" required>
+        
+         <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="<%= user.username %>" required>
+
+         
+        <button type="submit" class="account-options-button">Update Details</button>
+        <button type="button" class="cancel-button" onclick="location.href='/account'">Cancel</button>
+    </form>
+</div>
+
+
+
+
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<!-- Bootstrap JS (client-side only) -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+src="/Clientside_JS/PoetrySub.js" type="module"></script>
+
+<%- include("partials/PS_footer.ejs") %>
+
+</body>
+
+
+</html>
+
